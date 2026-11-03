@@ -69,10 +69,12 @@ export default function GalleryPreview({ images }: GalleryPreviewProps) {
 			<GalleryCard
 				key={image.id}
 				image={image}
+				index={index}
 				href={galleryPhotoPath(image.id)}
 				aspect="aspect-[4/3]"
 				sizes={SIZES}
 				onOpen={() => openPhoto(index)}
+				showDetails
 			/>
 		);
 	};

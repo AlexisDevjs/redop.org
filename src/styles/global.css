@@ -90,7 +90,7 @@
 		--green: #8bc944;
 		--purple: #c77bce;
 		--grid: rgba(255, 255, 255, 0.025);
-		--header: rgba(9, 10, 11, 0.94);
+		--header: rgba(9, 10, 11, 0.89);
 	}
 
 	:root[data-theme="light"] {

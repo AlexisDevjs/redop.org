@@ -5,26 +5,29 @@ import type { GalleryImageView } from "./types";
 
 interface GalleryCardProps {
 	image: GalleryImageView;
+	index?: number;
 	href: string;
-	onOpen?: () => void;
+	onOpen: () => void;
 	sizes: string;
 	/** Fixed crop for the preview mosaic; omit for natural masonry. */
 	aspect?: string;
 	priority?: boolean;
+	showDetails?: boolean;
 }
 
 export default function GalleryCard({
 	image,
+	index,
 	href,
 	onOpen,
 	sizes,
 	aspect,
 	priority = false,
+	showDetails = false,
 }: GalleryCardProps) {
 	// Plain clicks open the lightbox in place; modifier clicks, middle clicks
 	// and "open in new tab" keep the real permalink behavior.
 	const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
-		if (!onOpen) return;
 		if (
 			event.button !== 0 ||
 			event.metaKey ||
@@ -44,13 +47,13 @@ export default function GalleryCard({
 			onClick={handleClick}
 			className="group flex w-full flex-col text-left"
 			aria-label={
-				onOpen
+				index === undefined
 					? `Ver fotografía: ${image.title}`
-					: `Ir a la galería: ${image.title}`
+					: `Ver fotografía ${index + 1}: ${image.title}`
 			}
 		>
 			<span
-				className={`relative block overflow-hidden border border-outline bg-raised ${
+				className={`relative block overflow-hidden rounded-sm border border-outline bg-raised ${
 					aspect ?? ""
 				}`}
 			>
@@ -71,7 +74,22 @@ export default function GalleryCard({
 				>
 					<ExpandIcon />
 				</span>
+				{showDetails && index !== undefined && (
+					<span className="absolute top-2.5 left-2.5 font-display text-[10px] font-medium tracking-[0.16em] text-white/85 tabular-nums [text-shadow:0_1px_10px_rgba(0,0,0,0.6)]">
+						{String(index + 1).padStart(2, "0")}
+					</span>
+				)}
 			</span>
+			{showDetails && (
+				<span className="mt-2.5 flex items-baseline justify-between gap-3">
+					<span className="block min-w-0 truncate font-display text-[12px] font-medium text-content">
+						{image.title}
+					</span>
+					<span className="shrink-0 text-[9px] tracking-[0.14em] text-muted uppercase">
+						{image.category}
+					</span>
+				</span>
+			)}
 		</a>
 	);
 }
