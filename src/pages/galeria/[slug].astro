@@ -1,11 +1,5 @@
 ---
-import Button from "../../components/Button.astro";
-import Dialogs from "../../components/Dialogs.astro";
-import Footer from "../../components/Footer.astro";
 import GalleryPage from "../../components/gallery/GalleryPage";
-import Header from "../../components/Header.astro";
-import Icon from "../../components/Icon.astro";
-import SectionLabel from "../../components/SectionLabel.astro";
 import { gallery } from "../../data/gallery";
 import Layout from "../../layouts/Layout.astro";
 import { getGalleryImages } from "../../lib/gallery-images";
@@ -22,83 +16,5 @@ const images = await getGalleryImages();
 	title="Galería — REDOPS"
 	description="Fotografías reales de instalaciones de videovigilancia, redes y obra civil de REDOPS."
 >
-  <a
-    class="fixed -top-25 left-5 z-100 bg-surface px-4.5 py-3 focus:top-3"
-    href="#contenido">Saltar al contenido
-  </a>
-
-  <Header />
-
-  <main id="contenido">
-    <section
-      class="relative isolate overflow-hidden border-b border-outline"
-      id="inicio"
-      aria-labelledby="gallery-page-title"
-    >
-      <div class="hero-grid" aria-hidden="true"></div>
-      <div class="hero-wash" aria-hidden="true"></div>
-      <div
-        class="site-container grid grid-cols-[1fr_auto] items-end gap-12 pt-16 pb-12 max-[1050px]:gap-8 max-[760px]:grid-cols-1 max-[760px]:gap-7 max-[760px]:pt-11 max-[760px]:pb-9"
-      >
-        <div>
-          <SectionLabel>Archivo de campo</SectionLabel>
-          <h1
-            id="gallery-page-title"
-            class="max-w-175 text-[clamp(40px,5.2vw,68px)] leading-[1.04] font-medium tracking-[-2.8px] max-[760px]:text-[clamp(36px,9vw,48px)] max-[760px]:tracking-[-1.8px]"
-          >
-            Instalaciones que ya están trabajando.
-          </h1>
-          <p
-            class="mt-6 max-w-135 text-[14px] leading-[1.9] max-[760px]:mt-4.5"
-          >
-            Cámaras, cableado, paneles y trabajo en campo. Cada fotografía es
-            parte de un proyecto real, documentado por nuestro equipo.
-          </p>
-        </div>
-        <div
-          class="pb-2 text-right max-[760px]:flex max-[760px]:items-end max-[760px]:justify-between max-[760px]:gap-6 max-[760px]:pb-0 max-[760px]:text-left"
-        >
-          <div>
-            <span
-              class="block font-display text-[76px] leading-[0.85] font-medium tracking-[-4px] text-content tabular-nums max-[760px]:text-[54px] max-[760px]:tracking-[-2px]"
-              >{String(gallery.length).padStart(2, "0")}</span
-            >
-            <span
-              class="mt-3 block text-[9px] tracking-[0.2em] text-muted uppercase"
-              >fotografías</span
-            >
-          </div>
-          <span
-            class="mt-4 block max-w-45 text-[9px] leading-loose tracking-[0.14em] text-muted uppercase max-[760px]:mt-0 max-[760px]:max-w-32"
-            >Videovigilancia · Redes · Instalaciones</span
-          >
-        </div>
-      </div>
-    </section>
-
-    <GalleryPage images={images} client:load />
-
-    <section class="site-container pb-20 max-[760px]:pb-14">
-      <div
-        class="contact-glow flex items-center justify-between gap-8 rounded-xl border px-8 py-7 max-[760px]:flex-col max-[760px]:items-start max-[760px]:gap-5 max-[760px]:px-6 max-[760px]:py-6"
-      >
-        <div>
-          <p class="font-display text-[22px] text-content max-[760px]:text-[19px]">
-            ¿Quieres un proyecto así?
-          </p>
-          <p class="mt-1 max-w-120 text-[12px]">
-            Cuéntanos qué necesitas proteger y armamos una propuesta a tu
-            medida.
-          </p>
-        </div>
-        <Button href="/#contacto" class="shrink-0"
-          >Hablemos de tu proyecto <Icon name="arrow" size={18} /></Button
-        >
-      </div>
-    </section>
-  </main>
-
-  <Footer />
-  <Dialogs />
-  <script src="../../scripts/interactions.ts"></script>
+	<GalleryPage images={images} client:load />
 </Layout>
