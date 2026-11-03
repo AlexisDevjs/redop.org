@@ -148,7 +148,7 @@
 		height: 0;
 		background: transparent;
 	}
-	
+
 	html:has(dialog[open]) {
 		@apply overflow-hidden;
 	}
@@ -183,7 +183,7 @@
 	p {
 		@apply text-pretty text-muted;
 	}
-	
+
 	section[id] {
 		@apply scroll-mt-25;
 	}
@@ -227,6 +227,9 @@
 	.gallery-thumbnails {
 		scrollbar-width: thin;
 		scrollbar-color: rgb(255 255 255 / 0.38) transparent;
+	}
+	.gallery-thumbnails-track {
+		margin-inline: auto;
 	}
 
 	.gallery-thumbnails::-webkit-scrollbar {

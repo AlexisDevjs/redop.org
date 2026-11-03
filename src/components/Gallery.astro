@@ -1,8 +1,8 @@
 ---
 import { gallery } from "../data/gallery";
 import { getGalleryImages } from "../lib/gallery-images";
+import Button from "./Button.astro";
 import GalleryPreview from "./gallery/GalleryPreview";
-import Icon from "./Icon.astro";
 import SectionLabel from "./SectionLabel.astro";
 
 const images = await getGalleryImages(
@@ -27,12 +27,7 @@ const images = await getGalleryImages(
       <p class="max-w-72 text-[12px] leading-[1.9]">
         Un vistazo a nuestras instalaciones, equipos y trabajo en campo.
       </p>
-      <a
-        href="/galeria"
-        class="mt-4 inline-flex min-h-11 items-center gap-2 text-[12px] font-semibold text-content hover:text-accent-red"
-      >
-        Ver las {gallery.length} fotografías <Icon name="arrow" size={17} />
-      </a>
+      <Button href="/galeria" class="mt-4">Ir a la galería</Button>
     </div>
   </div>
 
@@ -42,8 +37,5 @@ const images = await getGalleryImages(
     class="mt-8 flex items-center justify-between gap-4 border-t border-outline pt-4 text-[10px] text-muted max-[760px]:items-start"
   >
     <span>Instalaciones reales, documentadas en campo.</span>
-    <span class="shrink-0 tabular-nums"
-      >{String(gallery.length).padStart(2, "0")} fotografías</span
-    >
   </div>
 </section>

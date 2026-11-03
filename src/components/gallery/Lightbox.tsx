@@ -129,13 +129,6 @@ export default function Lightbox({
 							{image.title}
 						</p>
 					</div>
-					<p
-						aria-live="polite"
-						className="shrink-0 font-display text-[11px] text-white/65 tabular-nums"
-					>
-						{String(index + 1).padStart(2, "0")} /{" "}
-						{String(total).padStart(2, "0")}
-					</p>
 					<button
 						type="button"
 						onClick={onClose}
@@ -192,35 +185,37 @@ export default function Lightbox({
 					<p className="mx-auto mb-3 max-w-3xl text-center text-[11px] leading-normal text-white/60">
 						{image.alt}
 					</p>
-					<div className="gallery-thumbnails mx-auto flex max-w-4xl gap-2 overflow-x-auto py-1">
-						{images.map((thumb, thumbIndex) => (
-							<button
-								key={thumb.id}
-								type="button"
-								data-thumb={thumbIndex}
-								onClick={() => go(thumbIndex)}
-								aria-label={`Ver ${thumb.title}`}
-								aria-current={thumbIndex === index ? "true" : undefined}
-								className={`relative h-14 w-11 shrink-0 overflow-hidden rounded-[3px] border transition-opacity ${
-									thumbIndex === index
-										? "border-accent-red opacity-100"
-										: "border-white/15 opacity-50 hover:opacity-80"
-								}`}
-							>
-								<img
-									src={thumb.src}
-									srcSet={thumb.srcSet}
-									sizes="44px"
-									alt=""
-									width={thumb.width}
-									height={thumb.height}
-									loading="lazy"
-									decoding="async"
-									draggable={false}
-									className="size-full object-cover"
-								/>
-							</button>
-						))}
+					<div className="gallery-thumbnails mx-auto max-w-4xl overflow-x-auto py-1">
+						<div className="gallery-thumbnails-track flex min-w-full w-max justify-center gap-2">
+							{images.map((thumb, thumbIndex) => (
+								<button
+									key={thumb.id}
+									type="button"
+									data-thumb={thumbIndex}
+									onClick={() => go(thumbIndex)}
+									aria-label={`Ver ${thumb.title}`}
+									aria-current={thumbIndex === index ? "true" : undefined}
+									className={`relative h-14 w-11 shrink-0 overflow-hidden rounded-[3px] border transition-opacity ${
+										thumbIndex === index
+											? "border-accent-red opacity-100"
+											: "border-white/15 opacity-50 hover:opacity-80"
+									}`}
+								>
+									<img
+										src={thumb.src}
+										srcSet={thumb.srcSet}
+										sizes="44px"
+										alt=""
+										width={thumb.width}
+										height={thumb.height}
+										loading="lazy"
+										decoding="async"
+										draggable={false}
+										className="size-full object-cover"
+									/>
+								</button>
+							))}
+						</div>
 					</div>
 				</footer>
 			</div>

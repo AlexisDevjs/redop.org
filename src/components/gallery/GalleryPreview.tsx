@@ -8,20 +8,11 @@ interface GalleryPreviewProps {
 	images: GalleryImageView[];
 }
 
-const ASPECTS = [
-	"aspect-[3/4]",
-	"aspect-[3/4]",
-	"aspect-[2/3]",
-	"aspect-[4/3]",
-	"aspect-[3/4]",
-	"aspect-square",
-];
-
 const SIZES = "(min-width: 1051px) 34vw, (min-width: 761px) 44vw, 92vw";
 
 export default function GalleryPreview({ images }: GalleryPreviewProps) {
-	const [activeIndex, setActiveIndex] = useState<number | null>(null);
 	const cards = useMemo(() => images.slice(0, 6), [images]);
+	const [activeIndex, setActiveIndex] = useState<number | null>(null);
 	const originRef = useRef("/");
 
 	useEffect(() => {
@@ -78,9 +69,8 @@ export default function GalleryPreview({ images }: GalleryPreviewProps) {
 			<GalleryCard
 				key={image.id}
 				image={image}
-				index={index}
 				href={galleryPhotoPath(image.id)}
-				aspect={ASPECTS[index]}
+				aspect="aspect-[4/3]"
 				sizes={SIZES}
 				onOpen={() => openPhoto(index)}
 			/>
@@ -89,21 +79,9 @@ export default function GalleryPreview({ images }: GalleryPreviewProps) {
 
 	return (
 		<>
-			<div className="grid grid-cols-1 gap-3 min-[761px]:grid-cols-2 min-[1051px]:grid-cols-12 min-[1051px]:gap-3.5">
-				<div className="flex flex-col gap-3 min-[1051px]:col-span-5 min-[1051px]:gap-3.5">
-					{renderCard(0)}
-					{renderCard(3)}
-				</div>
-				<div className="flex flex-col gap-3 min-[1051px]:col-span-4 min-[1051px]:gap-3.5 min-[1051px]:pt-14">
-					{renderCard(1)}
-					{renderCard(4)}
-				</div>
-				<div className="grid grid-cols-2 content-start gap-3 max-[760px]:grid-cols-1 min-[761px]:col-span-2 min-[1051px]:col-span-3 min-[1051px]:grid-cols-1 min-[1051px]:gap-3.5">
-					{renderCard(2)}
-					{renderCard(5)}
-				</div>
+			<div className="grid grid-cols-1 gap-3 min-[560px]:grid-cols-2 min-[1051px]:grid-cols-3 min-[1051px]:gap-3.5">
+				{cards.map((_, index) => renderCard(index))}
 			</div>
-
 			{activeIndex !== null && (
 				<Lightbox
 					images={cards}

@@ -6,7 +6,6 @@ import GalleryPage from "../components/gallery/GalleryPage";
 import Header from "../components/Header.astro";
 import Icon from "../components/Icon.astro";
 import SectionLabel from "../components/SectionLabel.astro";
-import { gallery } from "../data/gallery";
 import Layout from "../layouts/Layout.astro";
 import { getGalleryImages } from "../lib/gallery-images";
 
@@ -32,7 +31,7 @@ const images = await getGalleryImages();
       <div class="hero-grid" aria-hidden="true"></div>
       <div class="hero-wash" aria-hidden="true"></div>
       <div
-        class="site-container grid grid-cols-[1fr_auto] items-end gap-12 pt-16 pb-12 max-[1050px]:gap-8 max-[760px]:grid-cols-1 max-[760px]:gap-7 max-[760px]:pt-11 max-[760px]:pb-9"
+        class="site-container pt-16 pb-12 max-[760px]:pt-11 max-[760px]:pb-9"
       >
         <div>
           <SectionLabel>Archivo de campo</SectionLabel>
@@ -48,24 +47,6 @@ const images = await getGalleryImages();
             Cámaras, cableado, paneles y trabajo en campo. Cada fotografía es
             parte de un proyecto real, documentado por nuestro equipo.
           </p>
-        </div>
-        <div
-          class="pb-2 text-right max-[760px]:flex max-[760px]:items-end max-[760px]:justify-between max-[760px]:gap-6 max-[760px]:pb-0 max-[760px]:text-left"
-        >
-          <div>
-            <span
-              class="block font-display text-[76px] leading-[0.85] font-medium tracking-[-4px] text-content tabular-nums max-[760px]:text-[54px] max-[760px]:tracking-[-2px]"
-              >{String(gallery.length).padStart(2, "0")}</span
-            >
-            <span
-              class="mt-3 block text-[9px] tracking-[0.2em] text-muted uppercase"
-              >fotografías</span
-            >
-          </div>
-          <span
-            class="mt-4 block max-w-45 text-[9px] leading-loose tracking-[0.14em] text-muted uppercase max-[760px]:mt-0 max-[760px]:max-w-32"
-            >Videovigilancia · Redes · Instalaciones</span
-          >
         </div>
       </div>
     </section>

@@ -25,17 +25,6 @@ export default function GalleryPage({ images }: GalleryPageProps) {
 	const [category, setCategory] = useState<GalleryFilter>("Todos");
 	const [activeId, setActiveId] = useState<string | null>(null);
 
-	const counts = useMemo(() => {
-		const result: Record<GalleryFilter, number> = {
-			Todos: images.length,
-			Videovigilancia: 0,
-			Redes: 0,
-			Instalaciones: 0,
-		};
-		for (const image of images) result[image.category] += 1;
-		return result;
-	}, [images]);
-
 	const filtered = useMemo(
 		() =>
 			category === "Todos"
@@ -135,22 +124,9 @@ export default function GalleryPage({ images }: GalleryPageProps) {
 								}`}
 							>
 								{filter}
-								<span
-									className={`text-[9px] font-normal tabular-nums ${
-										selected ? "text-white/70" : "text-muted"
-									}`}
-								>
-									{counts[filter]}
-								</span>
 							</button>
 						);
 					})}
-					<span
-						aria-live="polite"
-						className="ml-auto hidden shrink-0 pl-4 text-[10px] text-muted tabular-nums min-[761px]:block"
-					>
-						{filtered.length} de {images.length} fotografías
-					</span>
 				</div>
 			</div>
 
@@ -171,13 +147,13 @@ export default function GalleryPage({ images }: GalleryPageProps) {
 						</div>
 					</div>
 				) : (
-					<div className="columns-1 gap-4 min-[560px]:columns-2 min-[1051px]:columns-3">
-						{filtered.map((image, index) => (
-							<div key={image.id} className="mb-5 break-inside-avoid">
+					<div className="grid grid-cols-1 gap-3 min-[560px]:grid-cols-2 min-[1051px]:grid-cols-3 min-[1051px]:gap-3.5">
+						{filtered.map((image) => (
+							<div key={image.id}>
 								<GalleryCard
 									image={image}
-									index={index}
 									href={galleryPhotoPath(image.id)}
+									aspect="aspect-[4/3]"
 									sizes={SIZES}
 									onOpen={() => openPhoto(image.id)}
 								/>
