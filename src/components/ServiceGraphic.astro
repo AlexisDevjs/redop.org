@@ -1,0 +1,122 @@
+---
+import Icon from "./Icon.astro";
+---
+<div class="services-art" aria-hidden="true">
+        <span class="orbit orbit-one"></span><span class="orbit orbit-two"
+        ></span><span class="orbit orbit-three"></span><div
+          class="services-core"
+        >
+          <Icon name="shield" size={68} />
+        </div><span class="art-node node-a"
+          ><Icon name="camera" size={24} /></span
+        ><span class="art-node node-b"><Icon name="shield" size={24} /></span
+        ><span class="art-node node-c"><Icon name="tools" size={24} /></span
+        ><span class="connection-note"
+          >Una instalación. Cada detalle resuelto.</span
+        >
+      </div>
+<style>
+  .services-art {
+  	position: relative;
+  	min-height: 380px;
+  	display: grid;
+  	place-items: center;
+  	overflow: hidden;
+  	background: radial-gradient(
+  		ellipse at center,
+  		color-mix(in srgb, var(--purple) 8%, transparent),
+  		transparent 65%
+  	);
+  }
+  .orbit {
+  	position: absolute;
+  	width: 330px;
+  	height: 330px;
+  	border: 1px solid var(--border);
+  	border-radius: 50%;
+  	transform: rotate(-25deg);
+  }
+  .orbit-two {
+  	width: 330px;
+  	height: 180px;
+  	border-color: color-mix(in srgb, var(--purple) 30%, var(--border));
+  	transform: rotate(35deg);
+  }
+  .orbit-three {
+  	width: 180px;
+  	height: 330px;
+  	transform: rotate(35deg);
+  	border-style: dashed;
+  }
+  .services-core {
+  	width: 138px;
+  	height: 138px;
+  	border: 1px solid color-mix(in srgb, var(--purple) 50%, var(--border));
+  	background: var(--surface);
+  	border-radius: 28px;
+  	display: grid;
+  	place-items: center;
+  	color: var(--purple);
+  	box-shadow: 0 0 70px color-mix(in srgb, var(--purple) 9%, transparent);
+  }
+  .art-node {
+  	display: grid;
+  	place-items: center;
+  	position: absolute;
+  	width: 55px;
+  	height: 55px;
+  	border: 1px solid var(--border);
+  	background: var(--surface-raised);
+  	border-radius: 12px;
+  }
+  .node-a {
+  	top: 12%;
+  	left: 19%;
+  	color: var(--red);
+  }
+  .node-b {
+  	right: 12%;
+  	top: 37%;
+  	color: var(--green);
+  }
+  .node-c {
+  	left: 20%;
+  	bottom: 12%;
+  	color: var(--purple);
+  }
+  .connection-note {
+  	position: absolute;
+  	bottom: 0;
+  	color: var(--muted);
+  	font-size: 10px;
+  }
+  @media (max-width: 760px) {
+  	.services-art {
+  		min-height: 320px;
+  		order: 2;
+  	}
+  	.orbit {
+  		width: 285px;
+  		height: 285px;
+  	}
+  	.orbit-two {
+  		width: 285px;
+  		height: 160px;
+  	}
+  	.orbit-three {
+  		width: 160px;
+  		height: 285px;
+  	}
+  	.node-a {
+  		left: 16%;
+  		top: 8%;
+  	}
+  	.node-b {
+  		right: 10%;
+  	}
+  	.node-c {
+  		left: 15%;
+  		bottom: 14%;
+  	}
+  }
+</style>

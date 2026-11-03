@@ -1,0 +1,49 @@
+---
+import { gallery } from "../data/gallery";
+import { getGalleryImages } from "../lib/gallery-images";
+import GalleryPreview from "./gallery/GalleryPreview";
+import Icon from "./Icon.astro";
+import SectionLabel from "./SectionLabel.astro";
+
+const images = await getGalleryImages(
+	gallery.filter((item) => item.featured).slice(0, 6),
+);
+---
+<section
+	class="site-container py-27 max-[760px]:py-17.5"
+	id="galeria"
+	aria-labelledby="gallery-title"
+>
+  <div
+    class="mb-10 flex items-end justify-between gap-7.5 max-[760px]:mb-7.5 max-[760px]:block"
+  >
+    <div>
+      <SectionLabel>Nuestra galería</SectionLabel>
+      <h2 id="gallery-title" class="max-[760px]:text-[34px]">
+        Seguridad que puedes ver.
+      </h2>
+    </div>
+    <div class="max-[760px]:mt-5">
+      <p class="max-w-72 text-[12px] leading-[1.9]">
+        Un vistazo a nuestras instalaciones, equipos y trabajo en campo.
+      </p>
+      <a
+        href="/galeria"
+        class="mt-4 inline-flex min-h-11 items-center gap-2 text-[12px] font-semibold text-content hover:text-accent-red"
+      >
+        Ver las {gallery.length} fotografías <Icon name="arrow" size={17} />
+      </a>
+    </div>
+  </div>
+
+  <GalleryPreview images={images} client:visible />
+
+  <div
+    class="mt-8 flex items-center justify-between gap-4 border-t border-outline pt-4 text-[10px] text-muted max-[760px]:items-start"
+  >
+    <span>Instalaciones reales, documentadas en campo.</span>
+    <span class="shrink-0 tabular-nums"
+      >{String(gallery.length).padStart(2, "0")} fotografías</span
+    >
+  </div>
+</section>

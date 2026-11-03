@@ -1,0 +1,55 @@
+---
+import "../styles/global.css";
+
+interface Props {
+	title?: string;
+	description?: string;
+	/** Social preview image; relative paths are resolved against `site`. */
+	image?: string;
+	imageAlt?: string;
+}
+
+const {
+	title = "REDOPS — Videovigilancia, seguridad digital e instalaciones",
+	description = "REDOPS Cybersecurity: instalación de cámaras, videovigilancia inteligente, seguridad de redes y obra civil con acabados.",
+	image,
+	imageAlt,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const socialImage = image ? new URL(image, Astro.site) : null;
+---
+<!doctype html>
+<html lang="es" data-theme="dark">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/webp" href="/brand/redops-header.webp" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<meta name="theme-color" content="#090a0b" />
+		<link rel="canonical" href={canonical} />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="REDOPS" />
+		<meta property="og:locale" content="es_ES" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		{socialImage && <meta property="og:image" content={socialImage} />}
+		{socialImage && <meta property="og:image:alt" content={imageAlt ?? title} />}
+		<meta name="twitter:card" content={socialImage ? "summary_large_image" : "summary"} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+		<title>{title}</title>
+		<script is:inline>
+			try {
+				const theme = localStorage.getItem('redops-theme');
+				if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+			} catch {}
+		</script>
+	</head>
+	<body class="bg-page font-sans text-base leading-[1.7] text-content antialiased">
+		<slot />
+	</body>
+</html>

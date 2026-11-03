@@ -1,0 +1,142 @@
+---
+import { Image } from "astro:assets";
+import Icon from "./Icon.astro";
+---
+
+<div class="network-visual min-[1000px]:motion-safe:animate-hero-network">
+  <svg
+    class="network-lines"
+    viewBox="0 0 600 600"
+    fill="none"
+    aria-hidden="true"
+    ><defs
+      ><radialGradient id="networkGlow"
+        ><stop stop-color="#df3515" stop-opacity=".12"></stop><stop
+          offset="1"
+          stop-color="#df3515"
+          stop-opacity="0"></stop></radialGradient
+      ></defs
+    ><circle cx="300" cy="300" r="290" fill="url(#networkGlow)"></circle><g
+      stroke="currentColor"
+      stroke-width="1"
+      ><path d="m85 135 210-75 230 115 30 250-240 115L65 405Z"></path><path
+        d="m85 135 230 405 210-365L65 405 295 60l260 365Z"></path><path
+        d="m85 135 470 290M295 60l20 480M65 405l460-230"></path><circle
+        cx="300"
+        cy="300"
+        r="250"
+        stroke-dasharray="3 9"></circle><circle cx="300" cy="300" r="190"
+      ></circle></g
+    ><g fill="#df3515"
+      ><circle cx="85" cy="135" r="5"></circle><circle cx="555" cy="425" r="5"
+      ></circle></g
+    ><g fill="#79b729"
+      ><circle cx="525" cy="175" r="5"></circle><circle cx="65" cy="405" r="5"
+      ></circle></g
+    ><g fill="#89338e"
+      ><circle cx="295" cy="60" r="5"></circle><circle cx="315" cy="540" r="5"
+      ></circle></g
+    >
+  </svg>
+
+  <div class="identity">
+    <Image
+      src="/brand/redops-main.webp"
+      alt="REDOPS Cybersecurity, logo principal rojo con sombrero y gafas blancos"
+      width="900"
+      height="900"
+      fetchpriority="high"
+    />
+  </div>
+
+  <span class="network-tag tag-security"
+    ><span class="text-accent-red"><Icon name="shield" size={16} /></span> Seguridad</span
+  ><span class="network-tag tag-learning"
+    ><span class="text-accent-green"><Icon name="camera" size={16} /></span> Videovigilancia</span
+  ><span class="network-tag tag-community"
+    ><span class="text-accent-purple"><Icon name="tools" size={16} /></span> Instalaciones</span
+  >
+</div>
+
+<style>
+  .network-visual {
+    position: relative;
+    width: 112%;
+    margin-left: -4%;
+    aspect-ratio: 1;
+    max-width: 610px;
+  }
+  
+  .network-lines {
+    width: 100%;
+    height: 100%;
+    color: color-mix(in srgb, var(--red) 20%, var(--border));
+    position: absolute;
+    inset: 0;
+  }
+
+  .identity {
+    position: absolute;
+    inset: 18%;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #080808;
+    box-shadow: 0 0 80px rgba(220, 52, 20, 0.08);
+  }
+
+  .identity :where(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .network-tag {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    border-radius: 6px;
+    padding: 9px 12px;
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  .tag-security {
+    left: 2%;
+    top: 24%;
+  }
+
+  .tag-learning {
+    right: -1%;
+    top: 39%;
+  }
+  .tag-community {
+    left: 23%;
+    bottom: 8%;
+  }
+  @media (max-width: 1050px) {
+    .network-tag {
+      font-size: 9px;
+      padding: 7px 9px;
+    }
+  }
+  @media (max-width: 760px) {
+    .network-visual {
+      width: 100%;
+      max-width: 440px;
+      justify-self: center;
+      margin: -12px 0 -10px;
+    }
+    .tag-security {
+      left: 2%;
+    }
+    .tag-learning {
+      right: 0;
+    }
+    .network-visual {
+      max-height: 440px;
+    }
+  }
+</style>
