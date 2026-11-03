@@ -3,6 +3,7 @@ import {
 	type PointerEvent,
 	useEffect,
 	useRef,
+	useState,
 } from "react";
 import GalleryImage from "./GalleryImage";
 import { ChevronLeftIcon, ChevronRightIcon, CloseIcon } from "./icons";
@@ -24,13 +25,26 @@ export default function Lightbox({
 	const dialogRef = useRef<HTMLDialogElement>(null);
 	const triggerRef = useRef<HTMLElement | null>(null);
 	const pointerRef = useRef<{ x: number; y: number } | null>(null);
+	const [direction, setDirection] = useState<1 | -1>(1);
 
 	const image = images[index];
 	const total = images.length;
 
-	const go = (next: number) => {
+	const go = async (next: number) => {
 		if (total === 0) return;
-		onIndexChange((next + total) % total);
+		const nextIndex = (next + total) % total;
+		setDirection(
+			nextIndex > index || (index === total - 1 && nextIndex === 0) ? 1 : -1,
+		);
+
+		const preload = new window.Image();
+		preload.src = images[nextIndex].src;
+		try {
+			await preload.decode();
+		} catch {
+			// The browser can still display the image when decoding is unavailable.
+		}
+		onIndexChange(nextIndex);
 	};
 
 	useEffect(() => {
@@ -140,14 +154,18 @@ export default function Lightbox({
 					>
 						<div
 							key={image.id}
-							className="relative h-full w-full motion-safe:animate-hero-copy"
+							className={`lightbox-image-frame relative h-full min-h-0 w-full min-w-0 motion-reduce:animate-none ${
+								direction === 1
+									? "motion-safe:animate-gallery-slide-left"
+									: "motion-safe:animate-gallery-slide-right"
+							}`}
 						>
 							<GalleryImage
 								image={image}
 								sizes="100vw"
 								priority
 								contain
-								className="drop-shadow-[0_24px_60px_rgba(0,0,0,0.55)]"
+								className="size-full drop-shadow-[0_24px_60px_rgba(0,0,0,0.55)]"
 							/>
 						</div>
 					</div>
@@ -174,13 +192,13 @@ export default function Lightbox({
 					<p className="mx-auto mb-3 max-w-3xl text-center text-[11px] leading-normal text-white/60">
 						{image.alt}
 					</p>
-					<div className="mx-auto flex max-w-4xl gap-2 overflow-x-auto py-1">
+					<div className="gallery-thumbnails mx-auto flex max-w-4xl gap-2 overflow-x-auto py-1">
 						{images.map((thumb, thumbIndex) => (
 							<button
 								key={thumb.id}
 								type="button"
 								data-thumb={thumbIndex}
-								onClick={() => onIndexChange(thumbIndex)}
+								onClick={() => go(thumbIndex)}
 								aria-label={`Ver ${thumb.title}`}
 								aria-current={thumbIndex === index ? "true" : undefined}
 								className={`relative h-14 w-11 shrink-0 overflow-hidden rounded-[3px] border transition-opacity ${

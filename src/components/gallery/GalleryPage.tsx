@@ -56,9 +56,8 @@ export default function GalleryPage({ images }: GalleryPageProps) {
 				? images.find((image) => image.id === photoId)
 				: undefined;
 
-			const nextCategory = photo
-				? photo.category
-				: (categoryFromParam(params.get("categoria")) ?? "Todos");
+			const nextCategory =
+				categoryFromParam(params.get("categoria")) ?? "Todos";
 
 			setCategory(nextCategory);
 			setActiveId(photo ? photo.id : null);

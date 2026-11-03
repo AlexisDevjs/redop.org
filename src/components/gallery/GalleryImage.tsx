@@ -38,13 +38,15 @@ export default function GalleryImage({
 				contain ? "bg-transparent" : "bg-raised"
 			} ${fill ? "absolute inset-0" : "relative w-full"}`}
 		>
-			<span
-				aria-hidden="true"
-				className={`absolute inset-0 scale-110 bg-cover bg-center blur-xl transition-opacity duration-500 ${
-					loaded ? "opacity-0" : "opacity-90"
-				}`}
-				style={{ backgroundImage: `url(${image.blurUrl})` }}
-			/>
+			{!contain && (
+				<span
+					aria-hidden="true"
+					className={`absolute inset-0 scale-110 bg-cover bg-center blur-xl transition-opacity duration-500 ${
+						loaded ? "opacity-0" : "opacity-90"
+					}`}
+					style={{ backgroundImage: `url(${image.blurUrl})` }}
+				/>
+			)}
 			<img
 				ref={handleRef}
 				src={image.src}
