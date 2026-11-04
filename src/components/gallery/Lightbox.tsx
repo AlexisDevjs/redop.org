@@ -25,7 +25,7 @@ export default function Lightbox({
 	const dialogRef = useRef<HTMLDialogElement>(null);
 	const triggerRef = useRef<HTMLElement | null>(null);
 	const pointerRef = useRef<{ x: number; y: number } | null>(null);
-	const [direction, setDirection] = useState<1 | -1>(1);
+	const [direction, setDirection] = useState<1 | -1 | null>(null);
 
 	const image = images[index];
 	const total = images.length;
@@ -120,7 +120,7 @@ export default function Lightbox({
 			className="fixed inset-0 m-0 h-dvh max-h-none w-screen max-w-none border-0 bg-[#08090a] p-0 text-white backdrop:bg-black/85"
 		>
 			<div className="grid h-dvh w-full grid-cols-[minmax(0,1fr)] grid-rows-[auto_minmax(0,1fr)_auto] overflow-hidden">
-				<header className="flex items-center gap-4 border-b border-white/10 px-3 py-3 sm:px-5">
+				<header className="flex min-h-18 shrink-0 items-center gap-4 border-b border-white/10 px-3 py-3 sm:px-5">
 					<div className="min-w-0 flex-1">
 						<p className="text-[9px] tracking-[0.18em] text-white/55 uppercase">
 							{image.category}
@@ -141,25 +141,29 @@ export default function Lightbox({
 
 				<div className="relative flex min-h-0 min-w-0 items-stretch">
 					<div
-						className="flex min-h-0 flex-1 touch-pan-y items-center justify-center px-3 py-4 select-none sm:px-16"
+						className="flex min-h-0 flex-1 touch-pan-y items-center justify-center overflow-hidden px-3 py-4 select-none sm:px-16"
 						onPointerDown={handlePointerDown}
 						onPointerUp={handlePointerUp}
 					>
-						<div
-							key={image.id}
-							className={`lightbox-image-frame relative h-full min-h-0 w-full min-w-0 motion-reduce:animate-none ${
-								direction === 1
-									? "motion-safe:animate-gallery-slide-left"
-									: "motion-safe:animate-gallery-slide-right"
-							}`}
-						>
-							<GalleryImage
-								image={image}
-								sizes="100vw"
-								priority
-								contain
-								className="size-full drop-shadow-[0_24px_60px_rgba(0,0,0,0.55)]"
-							/>
+						<div className="lightbox-image-frame relative h-full min-h-0 w-full min-w-0 overflow-hidden">
+							<div
+								key={image.id}
+								className={`absolute inset-0 ${
+									direction === null
+										? ""
+										: direction === 1
+											? "motion-safe:animate-gallery-slide-left motion-reduce:animate-none"
+											: "motion-safe:animate-gallery-slide-right motion-reduce:animate-none"
+								}`}
+							>
+								<GalleryImage
+									image={image}
+									sizes="100vw"
+									priority
+									contain
+									className="size-full drop-shadow-[0_24px_60px_rgba(0,0,0,0.55)]"
+								/>
+							</div>
 						</div>
 					</div>
 
@@ -181,8 +185,8 @@ export default function Lightbox({
 					</button>
 				</div>
 
-				<footer className="min-w-0 border-t border-white/10 px-3 pt-3 pb-4 sm:px-5">
-					<p className="mx-auto mb-3 max-w-3xl text-center text-[11px] leading-normal text-white/60">
+				<footer className="min-w-0 shrink-0 border-t border-white/10 px-3 pt-3 pb-4 sm:px-5">
+					<p className="mx-auto mb-3 min-h-[2.75rem] max-w-3xl overflow-hidden text-center text-[11px] leading-normal text-white/60">
 						{image.alt}
 					</p>
 					<div className="gallery-thumbnails mx-auto max-w-4xl overflow-x-auto py-1">

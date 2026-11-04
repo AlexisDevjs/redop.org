@@ -38,7 +38,7 @@ export default function GalleryCard({
 			return;
 		}
 		event.preventDefault();
-		onOpen?.();
+		onOpen();
 	};
 
 	return (

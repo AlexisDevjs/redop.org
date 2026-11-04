@@ -110,6 +110,7 @@
 
 	html {
 		@apply scroll-smooth scroll-pt-25 scrollbar-gutter-stable motion-reduce:scroll-auto;
+		scrollbar-gutter: stable;
 	}
 
 	* {
