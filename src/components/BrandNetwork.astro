@@ -61,10 +61,13 @@ import Icon from "./Icon.astro";
 <style>
   .network-visual {
     position: relative;
-    width: 112%;
+    width: 100%;
     margin-left: -4%;
     aspect-ratio: 1;
-    max-width: 610px;
+    max-width: 440px;
+    max-height: 440px;
+    justify-self: center;
+    margin: -12px 0 -10px;
   }
   
   .network-lines {
@@ -98,8 +101,8 @@ import Icon from "./Icon.astro";
     border: 1px solid var(--border);
     background: var(--bg);
     border-radius: 6px;
-    padding: 9px 12px;
-    font-size: 10px;
+    padding: 7px 9px;
+    font-size: 9px;
     color: var(--muted);
   }
 
@@ -109,34 +112,30 @@ import Icon from "./Icon.astro";
   }
 
   .tag-learning {
-    right: -1%;
+    right: 0;
     top: 39%;
   }
   .tag-community {
     left: 23%;
     bottom: 8%;
   }
-  @media (width < 64rem) {
-    .network-tag {
-      font-size: 9px;
-      padding: 7px 9px;
+  @media (width >= 48rem) {
+    .network-visual {
+      width: 112%;
+      max-width: 610px;
+      max-height: none;
+      justify-self: auto;
+      margin: 0 0 0 -4%;
+    }
+
+    .tag-learning {
+      right: -1%;
     }
   }
-  @media (width < 48rem) {
-    .network-visual {
-      width: 100%;
-      max-width: 440px;
-      justify-self: center;
-      margin: -12px 0 -10px;
-    }
-    .tag-security {
-      left: 2%;
-    }
-    .tag-learning {
-      right: 0;
-    }
-    .network-visual {
-      max-height: 440px;
+  @media (width >= 64rem) {
+    .network-tag {
+      padding: 9px 12px;
+      font-size: 10px;
     }
   }
 </style>

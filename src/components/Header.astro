@@ -9,15 +9,15 @@ const isGallery = Astro.url.pathname.startsWith("/galeria");
   class="sticky top-0 z-20 border-b border-outline bg-header backdrop-blur-md"
 >
   <div
-    class="site-container flex min-h-22 items-center justify-between gap-6.25 max-md:min-h-18.5 max-md:gap-2.5"
+    class="site-container flex min-h-18.5 items-center justify-between gap-2.5 md:gap-6.25"
   >
     <a
       href="/"
-      class="flex items-center gap-2.5 font-display text-[23px] leading-none font-bold tracking-[1px] max-md:text-xl"
+      class="flex items-center gap-2.5 font-display text-xl leading-none font-bold tracking-[1px] md:text-[23px]"
       aria-label="REDOPS, inicio"
     >
       <div
-        class="size-11 shrink-0 overflow-hidden rounded-[5px] bg-[#080808] max-md:size-9.5"
+        class="size-9.5 shrink-0 overflow-hidden rounded-[5px] bg-[#080808] md:size-11"
       >
         <img
           src="/brand/redops-header.webp"
@@ -32,7 +32,7 @@ const isGallery = Astro.url.pathname.startsWith("/galeria");
     <nav
       id="main-nav"
       aria-label="Navegación principal"
-      class="flex items-center gap-8.75 text-sm max-lg:gap-6 max-md:absolute max-md:inset-x-0 max-md:top-18.25 max-md:hidden max-md:border-b max-md:border-outline max-md:bg-surface max-md:px-5 max-md:py-3.75 max-md:[&.open]:grid max-md:[&.open]:gap-0 [&_a]:py-3.5 [&_a]:text-muted [&_a:hover]:text-content max-md:[&_a]:p-3.5 max-md:[&_a]:text-sm"
+      class="absolute inset-x-0 top-18.25 hidden border-b border-outline bg-surface px-5 py-3.75 [&.open]:grid [&.open]:gap-0 [&_a]:p-3.5 [&_a]:text-sm [&_a]:text-muted [&_a:hover]:text-content md:static md:flex md:items-center md:gap-8.75 md:border-0 md:bg-transparent md:px-0 md:py-0 md:[&_a]:px-0 md:[&_a]:py-3.5 md:[&_a]:text-sm lg:gap-6"
     >
       <a href="/#nosotros">Nosotros</a>
       <a href="/#servicios">Servicios</a>
@@ -43,7 +43,7 @@ const isGallery = Astro.url.pathname.startsWith("/galeria");
       >
     </nav>
 
-    <div class="flex items-center gap-3 max-md:gap-2">
+    <div class="flex items-center gap-2 md:gap-3">
       <button
         id="theme-toggle"
         class="inline-flex size-11 items-center justify-center rounded-[7px] border border-outline bg-transparent text-content hover:bg-raised"
@@ -53,12 +53,12 @@ const isGallery = Astro.url.pathname.startsWith("/galeria");
         <span class="hidden dark:flex"><Icon name="sun" size={20} /></span>
         <span class="flex dark:hidden"><Icon name="moon" size={20} /></span>
       </button>
-      <Button href="/#contacto" size="small" class="max-md:hidden"
+      <Button href="/#contacto" size="small" class="hidden md:inline-flex"
         >Cotizar proyecto <Icon name="arrow" size={17} /></Button
       >
       <button
         id="menu-toggle"
-        class="hidden size-11 items-center justify-center rounded-[7px] border border-outline bg-transparent text-content hover:bg-raised max-md:inline-flex"
+        class="inline-flex size-11 items-center justify-center rounded-[7px] border border-outline bg-transparent text-content hover:bg-raised md:hidden"
         aria-controls="main-nav"
         aria-expanded="false"
         aria-label="Abrir menú"><Icon name="menu" /></button

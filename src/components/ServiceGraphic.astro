@@ -18,7 +18,8 @@ import Icon from "./Icon.astro";
 <style>
   .services-art {
   	position: relative;
-  	min-height: 380px;
+  	min-height: 320px;
+  	order: 2;
   	display: grid;
   	place-items: center;
   	overflow: hidden;
@@ -30,21 +31,21 @@ import Icon from "./Icon.astro";
   }
   .orbit {
   	position: absolute;
-  	width: 330px;
-  	height: 330px;
+  	width: 285px;
+  	height: 285px;
   	border: 1px solid var(--border);
   	border-radius: 50%;
   	transform: rotate(-25deg);
   }
   .orbit-two {
-  	width: 330px;
-  	height: 180px;
+  	width: 285px;
+  	height: 160px;
   	border-color: color-mix(in srgb, var(--purple) 30%, var(--border));
   	transform: rotate(35deg);
   }
   .orbit-three {
-  	width: 180px;
-  	height: 330px;
+  	width: 160px;
+  	height: 285px;
   	transform: rotate(35deg);
   	border-style: dashed;
   }
@@ -70,18 +71,18 @@ import Icon from "./Icon.astro";
   	border-radius: 12px;
   }
   .node-a {
-  	top: 12%;
-  	left: 19%;
+  	top: 8%;
+  	left: 16%;
   	color: var(--red);
   }
   .node-b {
-  	right: 12%;
+  	right: 10%;
   	top: 37%;
   	color: var(--green);
   }
   .node-c {
-  	left: 20%;
-  	bottom: 12%;
+  	left: 15%;
+  	bottom: 14%;
   	color: var(--purple);
   }
   .connection-note {
@@ -90,33 +91,33 @@ import Icon from "./Icon.astro";
   	color: var(--muted);
   	font-size: 10px;
   }
-  @media (width < 48rem) {
+  @media (width >= 48rem) {
   	.services-art {
-  		min-height: 320px;
-  		order: 2;
+  		min-height: 380px;
+  		order: initial;
   	}
   	.orbit {
-  		width: 285px;
-  		height: 285px;
+  		width: 330px;
+  		height: 330px;
   	}
   	.orbit-two {
-  		width: 285px;
-  		height: 160px;
+  		width: 330px;
+  		height: 180px;
   	}
   	.orbit-three {
-  		width: 160px;
-  		height: 285px;
+  		width: 180px;
+  		height: 330px;
   	}
   	.node-a {
-  		left: 16%;
-  		top: 8%;
+  		left: 19%;
+  		top: 12%;
   	}
   	.node-b {
-  		right: 10%;
+  		right: 12%;
   	}
   	.node-c {
-  		left: 15%;
-  		bottom: 14%;
+  		left: 20%;
+  		bottom: 12%;
   	}
   }
 </style>

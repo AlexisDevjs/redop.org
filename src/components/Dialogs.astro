@@ -8,14 +8,14 @@ const dialogClasses =
 const closeClasses =
 	"absolute top-3 right-3 inline-flex size-11 items-center justify-center rounded-[7px] border border-outline bg-transparent text-content hover:bg-raised";
 ---
-<dialog id="contact-dialog" aria-labelledby="contact-dialog-title" class:list={[dialogClasses, 'w-[calc(100%-32px)] max-w-125 p-10 max-md:px-6.25 max-md:py-8.75']}>
+<dialog id="contact-dialog" aria-labelledby="contact-dialog-title" class:list={[dialogClasses, 'w-[calc(100%-32px)] max-w-125 px-6.25 py-8.75 md:p-10']}>
   <button type="button" class={closeClasses} data-close aria-label="Cerrar"><Icon name="close" /></button>
   <span class="grid size-15 place-items-center rounded-[14px] bg-raised text-accent-red"><Icon name="mail" size={30} /></span>
   <h2 id="contact-dialog-title" class="my-5 text-[30px] tracking-[-1px]">Hablemos de tu proyecto.</h2>
   <p class="mb-6.25 text-[14px]">Cuéntanos qué necesitas: videovigilancia, seguridad digital o una instalación completa.</p>
   <div class="mb-5 grid gap-3">
-    <a class="flex items-center justify-between gap-3 rounded-[7px] border border-outline px-4 py-3 text-[13px] hover:bg-raised max-md:flex-wrap" href={`mailto:${contact.email}`}><span>{contact.email}</span><Icon name="arrow" size={18} /></a>
-    <div class="flex items-center justify-between gap-3 rounded-[7px] border border-outline px-4 py-3 text-[13px] max-md:flex-wrap"><span>WhatsApp<br /><small class="text-muted">{contact.whatsappDisplay}</small></span><small class="text-muted">Por confirmar</small></div>
+    <a class="flex flex-wrap items-center justify-between gap-3 rounded-[7px] border border-outline px-4 py-3 text-[13px] hover:bg-raised md:flex-nowrap" href={`mailto:${contact.email}`}><span>{contact.email}</span><Icon name="arrow" size={18} /></a>
+    <div class="flex flex-wrap items-center justify-between gap-3 rounded-[7px] border border-outline px-4 py-3 text-[13px] md:flex-nowrap"><span>WhatsApp<br /><small class="text-muted">{contact.whatsappDisplay}</small></span><small class="text-muted">Por confirmar</small></div>
   </div>
   {contact.provisional && <p class="mb-6.25 text-[11px] text-muted">Datos de contacto provisionales para esta primera versión.</p>}
   <Button variant="secondary" data-close>Volver al sitio</Button>

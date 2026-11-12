@@ -63,16 +63,16 @@
 }
 
 @utility site-container {
-	width: calc(100% - 96px);
+	width: calc(100% - 40px);
 	max-width: 1220px;
 	margin-inline: auto;
 
-	@media (width < 64rem) {
+	@media (width >= 48rem) {
 		width: calc(100% - 56px);
 	}
 
-	@media (width < 48rem) {
-		width: calc(100% - 40px);
+	@media (width >= 64rem) {
+		width: calc(100% - 96px);
 	}
 }
 

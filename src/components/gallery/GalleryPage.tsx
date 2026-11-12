@@ -104,7 +104,7 @@ export default function GalleryPage({ images }: GalleryPageProps) {
 
 	return (
 		<>
-			<div className="sticky top-22 z-10 border-y border-outline bg-header backdrop-blur-[15px] max-md:top-18.5">
+			<div className="sticky top-18.5 z-10 border-y border-outline bg-header backdrop-blur-[15px] md:top-22">
 				<div className="site-container flex items-center gap-2 overflow-x-auto py-3 scrollbar-none [&::-webkit-scrollbar]:hidden">
 					<span className="mr-2 hidden shrink-0 text-[9px] tracking-[0.18em] text-muted uppercase md:block">
 						Filtrar
@@ -130,7 +130,7 @@ export default function GalleryPage({ images }: GalleryPageProps) {
 				</div>
 			</div>
 
-			<div className="site-container py-8 max-md:py-6">
+			<div className="site-container py-6 md:py-8">
 				{filtered.length === 0 ? (
 					<div className="grid min-h-60 place-items-center border border-dashed border-outline text-center">
 						<div className="max-w-90 px-6">

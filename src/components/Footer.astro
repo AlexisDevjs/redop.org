@@ -2,7 +2,7 @@
 const year = new Date().getFullYear();
 ---
 <footer
-  class="site-container flex min-h-28.75 items-center justify-between gap-7.5 pb-5 max-md:grid max-md:grid-cols-[1fr_auto] max-md:gap-3.75 max-md:pt-0 max-md:pb-6.25"
+  class="site-container grid min-h-28.75 grid-cols-[1fr_auto] items-center justify-between gap-3.75 pt-0 pb-6.25 md:flex md:gap-7.5 md:pt-0 md:pb-5"
 >
   <a
     href="/#inicio"
@@ -17,12 +17,12 @@ const year = new Date().getFullYear();
     </span>
   </a>
   <p
-    class="text-[10px] text-muted max-md:col-span-full max-md:row-start-2 max-md:text-[9px]"
+    class="col-span-full row-start-2 text-[9px] text-muted md:col-auto md:row-auto md:text-[10px]"
   >
     © {year} REDOPS. Seguridad en cada conexión.
   </p>
   <a
-    class="flex min-h-11 items-center gap-6.25 text-[10px] text-muted hover:text-content max-md:col-start-2 max-md:row-start-1"
+    class="col-start-2 row-start-1 flex min-h-11 items-center gap-6.25 text-[10px] text-muted hover:text-content md:col-auto md:row-auto"
     href="#inicio">Volver arriba <span aria-hidden="true">↑</span></a
   >
 </footer>
