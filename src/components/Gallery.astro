@@ -10,20 +10,20 @@ const images = await getGalleryImages(
 );
 ---
 <section
-	class="site-container py-27 max-[760px]:py-17.5"
+	class="site-container py-27 max-md:py-17.5"
 	id="galeria"
 	aria-labelledby="gallery-title"
 >
   <div
-    class="mb-10 flex items-end justify-between gap-7.5 max-[760px]:mb-7.5 max-[760px]:block"
+    class="mb-10 flex items-end justify-between gap-7.5 max-md:mb-7.5 max-md:block"
   >
     <div>
       <SectionLabel>Nuestra galería</SectionLabel>
-      <h2 id="gallery-title" class="max-[760px]:text-[34px]">
+      <h2 id="gallery-title" class="max-md:text-[34px]">
         Seguridad que puedes ver.
       </h2>
     </div>
-    <div class="max-[760px]:mt-5">
+    <div class="max-md:mt-5">
       <p class="max-w-72 text-[12px] leading-[1.9]">
         Un vistazo a nuestras instalaciones, equipos y trabajo en campo.
       </p>
@@ -34,7 +34,7 @@ const images = await getGalleryImages(
   <GalleryPreview images={images} client:visible />
 
   <div
-    class="mt-8 flex items-center justify-between gap-4 border-t border-outline pt-4 text-[10px] text-muted max-[760px]:items-start"
+    class="mt-8 flex items-center justify-between gap-4 border-t border-outline pt-4 text-[10px] text-muted max-md:items-start"
   >
     <span>Instalaciones reales, documentadas en campo.</span>
   </div>

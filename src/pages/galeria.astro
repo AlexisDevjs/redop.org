@@ -31,18 +31,18 @@ const images = await getGalleryImages();
       <div class="hero-grid" aria-hidden="true"></div>
       <div class="hero-wash" aria-hidden="true"></div>
       <div
-        class="site-container pt-16 pb-12 max-[760px]:pt-11 max-[760px]:pb-9"
+        class="site-container pt-16 pb-12 max-md:pt-11 max-md:pb-9"
       >
         <div>
           <SectionLabel>Archivo de campo</SectionLabel>
           <h1
             id="gallery-page-title"
-            class="max-w-175 text-[clamp(40px,5.2vw,68px)] leading-[1.04] font-medium tracking-[-2.8px] max-[760px]:text-[clamp(36px,9vw,48px)] max-[760px]:tracking-[-1.8px]"
+            class="max-w-175 text-[clamp(40px,5.2vw,68px)] leading-[1.04] font-medium tracking-[-2.8px] max-md:text-[clamp(36px,9vw,48px)] max-md:tracking-[-1.8px]"
           >
             Instalaciones que ya están trabajando.
           </h1>
           <p
-            class="mt-6 max-w-135 text-[14px] leading-[1.9] max-[760px]:mt-4.5"
+            class="mt-6 max-w-135 text-[14px] leading-[1.9] max-md:mt-4.5"
           >
             Cámaras, cableado, paneles y trabajo en campo. Cada fotografía es
             parte de un proyecto real, documentado por nuestro equipo.
@@ -53,12 +53,12 @@ const images = await getGalleryImages();
 
     <GalleryPage images={images} client:load />
 
-    <section class="site-container pb-20 max-[760px]:pb-14">
+    <section class="site-container pb-20 max-md:pb-14">
       <div
-        class="contact-glow flex items-center justify-between gap-8 rounded-xl border px-8 py-7 max-[760px]:flex-col max-[760px]:items-start max-[760px]:gap-5 max-[760px]:px-6 max-[760px]:py-6"
+        class="contact-glow flex items-center justify-between gap-8 rounded-xl border px-8 py-7 max-md:flex-col max-md:items-start max-md:gap-5 max-md:px-6 max-md:py-6"
       >
         <div>
-          <p class="font-display text-[22px] text-content max-[760px]:text-[19px]">
+          <p class="font-display text-[22px] text-content max-md:text-[19px]">
             ¿Quieres un proyecto así?
           </p>
           <p class="mt-1 max-w-120 text-[12px]">

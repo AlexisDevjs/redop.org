@@ -81,7 +81,7 @@ export default function GalleryPreview({ images }: GalleryPreviewProps) {
 
 	return (
 		<>
-			<div className="grid grid-cols-1 gap-3 min-[560px]:grid-cols-2 min-[1051px]:grid-cols-3 min-[1051px]:gap-3.5">
+			<div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3.5">
 				{cards.map((_, index) => renderCard(index))}
 			</div>
 			{activeIndex !== null && (

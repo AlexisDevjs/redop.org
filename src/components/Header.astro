@@ -9,38 +9,30 @@ const isGallery = Astro.url.pathname.startsWith("/galeria");
   class="sticky top-0 z-20 border-b border-outline bg-header backdrop-blur-md"
 >
   <div
-    class="site-container flex min-h-22 items-center justify-between gap-6.25 max-[760px]:min-h-18.5 max-[760px]:gap-2.5"
+    class="site-container flex min-h-22 items-center justify-between gap-6.25 max-md:min-h-18.5 max-md:gap-2.5"
   >
     <a
       href="/"
-      class="flex items-center gap-2.5 font-display text-[23px] leading-none font-bold tracking-[1px] max-[760px]:text-xl"
+      class="flex items-center gap-2.5 font-display text-[23px] leading-none font-bold tracking-[1px] max-md:text-xl"
       aria-label="REDOPS, inicio"
     >
-      <span
-        class="relative size-11 shrink-0 overflow-hidden rounded-[5px] bg-[#080808] max-[760px]:size-9.5"
+      <div
+        class="size-11 shrink-0 overflow-hidden rounded-[5px] bg-[#080808] max-md:size-9.5"
       >
         <img
           src="/brand/redops-header.webp"
           alt=""
-          width="52"
-          height="52"
           loading="eager"
           fetchpriority="high"
-          class="absolute -top-2 -left-3.5 w-18 max-w-none max-[760px]:-top-1.75 max-[760px]:-left-3.25 max-[760px]:w-16"
+          class="h-full w-auto"
         />
-      </span>
-      <span
-        >REDOPS<small
-          class="mt-1.75 block font-sans text-[9px] font-medium tracking-[2px] max-[760px]:text-[8px]"
-          >Cybersecurity</small
-        ></span
-      >
+      </div>
     </a>
 
     <nav
       id="main-nav"
       aria-label="Navegación principal"
-      class="flex items-center gap-8.75 text-sm max-[1050px]:gap-6 max-[760px]:absolute max-[760px]:inset-x-0 max-[760px]:top-18.25 max-[760px]:hidden max-[760px]:border-b max-[760px]:border-outline max-[760px]:bg-surface max-[760px]:px-5 max-[760px]:py-3.75 max-[760px]:[&.open]:grid max-[760px]:[&.open]:gap-0 [&_a]:py-3.5 [&_a]:text-muted [&_a:hover]:text-content max-[760px]:[&_a]:p-3.5 max-[760px]:[&_a]:text-sm"
+      class="flex items-center gap-8.75 text-sm max-lg:gap-6 max-md:absolute max-md:inset-x-0 max-md:top-18.25 max-md:hidden max-md:border-b max-md:border-outline max-md:bg-surface max-md:px-5 max-md:py-3.75 max-md:[&.open]:grid max-md:[&.open]:gap-0 [&_a]:py-3.5 [&_a]:text-muted [&_a:hover]:text-content max-md:[&_a]:p-3.5 max-md:[&_a]:text-sm"
     >
       <a href="/#nosotros">Nosotros</a>
       <a href="/#servicios">Servicios</a>
@@ -51,7 +43,7 @@ const isGallery = Astro.url.pathname.startsWith("/galeria");
       >
     </nav>
 
-    <div class="flex items-center gap-3 max-[760px]:gap-2">
+    <div class="flex items-center gap-3 max-md:gap-2">
       <button
         id="theme-toggle"
         class="inline-flex size-11 items-center justify-center rounded-[7px] border border-outline bg-transparent text-content hover:bg-raised"
@@ -61,12 +53,12 @@ const isGallery = Astro.url.pathname.startsWith("/galeria");
         <span class="hidden dark:flex"><Icon name="sun" size={20} /></span>
         <span class="flex dark:hidden"><Icon name="moon" size={20} /></span>
       </button>
-      <Button href="/#contacto" size="small" class="max-[760px]:hidden"
+      <Button href="/#contacto" size="small" class="max-md:hidden"
         >Cotizar proyecto <Icon name="arrow" size={17} /></Button
       >
       <button
         id="menu-toggle"
-        class="hidden size-11 items-center justify-center rounded-[7px] border border-outline bg-transparent text-content hover:bg-raised max-[760px]:inline-flex"
+        class="hidden size-11 items-center justify-center rounded-[7px] border border-outline bg-transparent text-content hover:bg-raised max-md:inline-flex"
         aria-controls="main-nav"
         aria-expanded="false"
         aria-label="Abrir menú"><Icon name="menu" /></button

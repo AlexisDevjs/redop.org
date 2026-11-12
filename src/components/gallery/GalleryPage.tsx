@@ -104,9 +104,9 @@ export default function GalleryPage({ images }: GalleryPageProps) {
 
 	return (
 		<>
-			<div className="sticky top-22 z-10 border-y border-outline bg-header backdrop-blur-[15px] max-[760px]:top-18.5">
+			<div className="sticky top-22 z-10 border-y border-outline bg-header backdrop-blur-[15px] max-md:top-18.5">
 				<div className="site-container flex items-center gap-2 overflow-x-auto py-3 scrollbar-none [&::-webkit-scrollbar]:hidden">
-					<span className="mr-2 hidden shrink-0 text-[9px] tracking-[0.18em] text-muted uppercase min-[761px]:block">
+					<span className="mr-2 hidden shrink-0 text-[9px] tracking-[0.18em] text-muted uppercase md:block">
 						Filtrar
 					</span>
 					{galleryFilters.map((filter) => {
@@ -130,7 +130,7 @@ export default function GalleryPage({ images }: GalleryPageProps) {
 				</div>
 			</div>
 
-			<div className="site-container py-8 max-[760px]:py-6">
+			<div className="site-container py-8 max-md:py-6">
 				{filtered.length === 0 ? (
 					<div className="grid min-h-60 place-items-center border border-dashed border-outline text-center">
 						<div className="max-w-90 px-6">
@@ -147,7 +147,7 @@ export default function GalleryPage({ images }: GalleryPageProps) {
 						</div>
 					</div>
 				) : (
-					<div className="grid grid-cols-1 gap-3 min-[560px]:grid-cols-2 min-[1051px]:grid-cols-3 min-[1051px]:gap-3.5">
+					<div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3.5">
 						{filtered.map((image) => (
 							<div key={image.id}>
 								<GalleryCard

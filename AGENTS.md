@@ -24,7 +24,7 @@ Static marketing site for REDOPS (video surveillance, network security, and cons
 
 - Use the semantic Tailwind color utilities backed by tokens in `src/styles/global.css` (`bg-page`, `bg-surface`, `text-content`, `text-muted`, `border-outline`, `text-accent-red/green/purple`). Don't hardcode brand hex values in markup.
 - Keep class names complete and static so Tailwind can detect them; never interpolate class strings.
-- Use the `site-container` utility for page width and the existing `max-[760px]:` / `max-[1050px]:` breakpoints. The mobile breakpoint is 760px, not Tailwind's `md`.
+- Use the `site-container` utility for page width and Tailwind's standard `md:` / `lg:` breakpoints for responsive behavior.
 - `global.css` is intentionally small (~150 lines) after the Tailwind migration. Keep brand-specific gradients and graphics scoped in `BrandNetwork.astro` / `ServiceGraphic.astro`; read `docs/tailwind-migration.md` before adding global CSS.
 - Biome formats with tabs and double quotes. Prefer canonical spacing values (e.g. `px-4.5`) over arbitrary ones (e.g. `px-[18px]`).
 

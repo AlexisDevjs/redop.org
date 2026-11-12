@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import Icon from "./Icon.astro";
 ---
 
-<div class="network-visual min-[1000px]:motion-safe:animate-hero-network">
+<div class="network-visual lg:motion-safe:animate-hero-network">
   <svg
     class="network-lines"
     viewBox="0 0 600 600"
@@ -116,13 +116,13 @@ import Icon from "./Icon.astro";
     left: 23%;
     bottom: 8%;
   }
-  @media (max-width: 1050px) {
+  @media (width < 64rem) {
     .network-tag {
       font-size: 9px;
       padding: 7px 9px;
     }
   }
-  @media (max-width: 760px) {
+  @media (width < 48rem) {
     .network-visual {
       width: 100%;
       max-width: 440px;
