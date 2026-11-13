@@ -17,11 +17,18 @@ const isGallery = Astro.url.pathname.startsWith("/galeria");
       aria-label="REDOPS, inicio"
     >
       <img
-        src="/brand/redops-header.webp"
+        src="/brand/redops-header-light.png"
         alt=""
         loading="eager"
         fetchpriority="high"
-        class="h-full w-auto"
+        class="h-full w-auto dark:hidden"
+      />
+      <img
+        src="/brand/redops-header-transparent.png"
+        alt=""
+        loading="eager"
+        fetchpriority="high"
+        class="hidden h-full w-auto dark:block"
       />
     </a>
 
