@@ -1,5 +1,6 @@
 import type { ImageMetadata } from "astro";
 
+import cableadoRackRedes from "../assets/images/gallery/cableado-rack-de-redes.jpeg";
 import camaraHikvisionTandemvu from "../assets/images/gallery/camara-hikvision-tandemvu.jpeg";
 import camaraPtzDobleLente from "../assets/images/gallery/camara-ptz-hikvision-doble-lente.jpeg";
 import camaraPtzEnPoste from "../assets/images/gallery/camara-ptz-hikvision-en-poste.jpeg";
@@ -55,7 +56,6 @@ export const gallery: GalleryItem[] = [
 		title: "Cámara TandemVu",
 		alt: "Cámara Hikvision TandemVu sostenida sobre su caja de instalación.",
 		category: "Videovigilancia",
-		featured: true,
 		focalPoint: "50% 45%",
 	},
 	{
@@ -91,7 +91,6 @@ export const gallery: GalleryItem[] = [
 		title: "PTZ lista para operar",
 		alt: "Cámara PTZ Hikvision instalada en una pared exterior.",
 		category: "Videovigilancia",
-		featured: true,
 		focalPoint: "50% 40%",
 	},
 	{
@@ -107,6 +106,16 @@ export const gallery: GalleryItem[] = [
 		title: "Cableado exterior",
 		alt: "Cableado exterior canalizado y fijado a la pared de un edificio.",
 		category: "Redes",
+		featured: true,
+	},
+	{
+		id: "cableado-rack-de-redes",
+		image: cableadoRackRedes,
+		title: "Rack de cableado estructurado",
+		alt: "Rack de comunicaciones con switches, paneles de parcheo y cableado estructurado organizado.",
+		category: "Redes",
+		featured: true,
+		focalPoint: "50% 48%",
 	},
 	{
 		id: "tecnico-con-camara-ptz",

@@ -17,6 +17,11 @@ TARGET = SOURCE / "gallery"
 
 # Regions are (left, top, right, bottom) in source pixels.
 REDACTIONS = {
+    "cableado-rack-de-redes.jpeg": {
+        "regions": [],
+        "radius": 0,
+        "feather": 0,
+    },
     "monitoreo-hikvision-en-portatil.jpeg": {
         "regions": [(620, 250, 1030, 345)],
         "radius": 16,
