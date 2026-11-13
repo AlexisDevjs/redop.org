@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import expertImage from "../assets/images/experto-proyectos-tecnologicos.png";
 import BrandNetwork from "../components/BrandNetwork.astro";
 import Button from "../components/Button.astro";
 import Dialogs from "../components/Dialogs.astro";
@@ -286,6 +288,55 @@ const services = [
             >Hablemos de tu proyecto <Icon name="arrow" size={18} /></Button
           >
         </div>
+      </div>
+    </section>
+
+    <section
+      class="site-container grid grid-cols-1 gap-8.75 py-14 md:grid-cols-[0.85fr_1.15fr] md:items-center md:gap-12.5 md:py-22.5 lg:gap-20"
+      id="experto-proyectos"
+      aria-labelledby="expert-title"
+    >
+      <div class="order-2 md:order-1">
+        <div class="overflow-hidden rounded-xl border border-outline bg-surface">
+          <Image
+            src={expertImage}
+            alt="Experto en proyectos tecnológicos de REDOPS frente a una red de servidores"
+            format="webp"
+            quality={84}
+            class="aspect-3/4 w-full object-cover object-center"
+          />
+        </div>
+      </div>
+      <div class="order-1 md:order-2">
+        <SectionLabel>Proyectos tecnológicos</SectionLabel>
+        <h2 id="expert-title">
+          La tecnología necesita una visión completa.
+        </h2>
+        <p class="mt-5.75 max-w-115 text-[13px] leading-[1.9]">
+          Nuestro experto en proyectos tecnológicos convierte tus necesidades
+          en soluciones claras: desde la conectividad y la fibra óptica hasta
+          la infraestructura que mantiene todo funcionando.
+        </p>
+        <div class="mt-7 grid gap-4 border-t border-outline pt-5 sm:grid-cols-2">
+          <div>
+            <p class="mb-1 text-[12px] font-semibold text-content">Diseño</p>
+            <p class="text-xs leading-[1.7]">
+              Planeación técnica para que cada recurso tenga un propósito.
+            </p>
+          </div>
+          <div>
+            <p class="mb-1 text-[12px] font-semibold text-content">Implementación</p>
+            <p class="text-xs leading-[1.7]">
+              Redes, conectividad e infraestructura listas para crecer.
+            </p>
+          </div>
+        </div>
+        <a
+          class="mt-7 inline-flex min-h-11 items-center gap-2 text-[12px] font-semibold text-content hover:text-accent-red"
+          href="#contacto"
+        >
+          Hablemos de tu proyecto <Icon name="arrow" size={18} />
+        </a>
       </div>
     </section>
 
