@@ -9,24 +9,20 @@ const isGallery = Astro.url.pathname.startsWith("/galeria");
   class="sticky top-0 z-20 border-b border-outline bg-header backdrop-blur-md"
 >
   <div
-    class="site-container flex min-h-18.5 items-center justify-between gap-2.5 md:gap-6.25"
+    class="site-container flex h-22 items-center justify-between gap-2.5 md:gap-6.25"
   >
     <a
       href="/"
-      class="flex items-center gap-2.5 font-display text-xl leading-none font-bold tracking-[1px] md:text-[23px]"
+      class="flex items-center gap-2.5 font-display text-xl leading-none font-bold tracking-[1px] md:text-[23px] h-full"
       aria-label="REDOPS, inicio"
     >
-      <div
-        class="size-9.5 shrink-0 overflow-hidden rounded-[5px] bg-[#080808] md:size-11"
-      >
-        <img
-          src="/brand/redops-header.webp"
-          alt=""
-          loading="eager"
-          fetchpriority="high"
-          class="h-full w-auto"
-        />
-      </div>
+      <img
+        src="/brand/redops-header.webp"
+        alt=""
+        loading="eager"
+        fetchpriority="high"
+        class="h-full w-auto"
+      />
     </a>
 
     <nav

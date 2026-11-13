@@ -32,11 +32,26 @@ const areas = [
 ];
 
 const disciplines = [
-	"Videovigilancia",
-	"Seguridad de redes",
-	"Hacking ético",
-	"Obra civil",
-	"Instalaciones y pintura",
+	{
+		title: "Vigilancia inteligente",
+		text: "Cámaras, monitoreo y control del perímetro.",
+	},
+	{
+		title: "Redes protegidas",
+		text: "Conexiones seguras para cada operación.",
+	},
+	{
+		title: "Evaluación ética",
+		text: "Revisión responsable de cuentas y redes.",
+	},
+	{
+		title: "Infraestructura integrada",
+		text: "Obra civil y canalización para cada instalación.",
+	},
+	{
+		title: "Acabados limpios",
+		text: "Cableado oculto y pintura que respeta el espacio.",
+	},
 ];
 
 const services = [
@@ -133,28 +148,48 @@ const services = [
       </div>
     </section>
 
-    <div class="border-y border-outline bg-surface">
-      <div
-        class="site-container flex min-h-20 flex-wrap items-center justify-center gap-x-3.75 gap-y-2 py-5 font-display text-[11px] text-muted lg:min-h-18 lg:flex-nowrap lg:justify-between lg:gap-4.5 lg:py-0 lg:text-[13px]"
-      >
-        {
-          disciplines.map((discipline, index) => (
-            <>
-              <span>{discipline}</span>
-              {index < disciplines.length - 1 && (
-                <i
-                  class:list={[
-                    "size-1 shrink-0 rounded-full bg-accent-red",
-                    index === 2 && "hidden md:block",
-                  ]}
-                  aria-hidden="true"
-                />
-              )}
-            </>
-          ))
-        }
+    <section
+      class="border-y border-outline bg-surface"
+      aria-labelledby="disciplines-title"
+    >
+      <div class="site-container py-8 md:py-10">
+        <div class="mb-7 flex flex-col gap-3 md:mb-9 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p class="mb-3 text-xs font-semibold tracking-[0.16em] text-muted uppercase">
+              Áreas de trabajo
+            </p>
+            <h2
+              id="disciplines-title"
+              class="max-w-145 font-display text-[22px] leading-[1.2] font-medium tracking-[-0.8px] md:text-[28px]"
+            >
+              Seguridad pensada de principio a fin.
+            </h2>
+          </div>
+          <p class="max-w-85 text-xs leading-[1.75] text-muted md:text-[13px]">
+            Diseñamos cada parte para que la tecnología funcione y el espacio
+            también se sienta bien.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-x-5 gap-y-7 sm:grid-cols-2 lg:grid-cols-5 lg:gap-y-0">
+          {
+            disciplines.map((discipline, index) => (
+              <article class="group border-t border-outline pt-4 lg:border-t-0 lg:border-l lg:pl-5">
+                <div class="mb-5 text-xs font-semibold tracking-[0.16em] text-muted">
+                  <span>0{index + 1}</span>
+                </div>
+                <h3 class="mb-2 text-[17px] leading-[1.25] tracking-[-0.3px]">
+                  {discipline.title}
+                </h3>
+                <p class="text-xs leading-[1.7] text-muted">
+                  {discipline.text}
+                </p>
+              </article>
+            ))
+          }
+        </div>
       </div>
-    </div>
+    </section>
 
     <section
       class="site-container grid grid-cols-1 gap-x-11.25 gap-y-7 py-17.5 md:grid-cols-2 md:gap-y-14 md:py-27 lg:gap-x-22.5"
