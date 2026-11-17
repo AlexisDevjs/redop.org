@@ -22,7 +22,7 @@ Static marketing site for REDOPS (video surveillance, network security, and cons
 
 ## Motion
 
-- `src/scripts/motion.ts` owns Lenis + GSAP/ScrollTrigger: hero and section reveals, split-text, hero parallax, the header scroll progress, and the pinned horizontal gallery. `src/styles/motion.css` holds the motion-only CSS.
+- `src/scripts/motion.ts` owns Lenis + GSAP/ScrollTrigger: hero and section reveals, split-text, hero parallax, and the pinned horizontal gallery. `src/styles/motion.css` holds the motion-only CSS.
 - Hidden pre-animation states live behind `html.anim`, which `Layout.astro` adds inline only when `prefers-reduced-motion` is not set (plus a 2.5 s failsafe). Keep it that way: without JS or with reduced motion the page must stay readable and every gallery photo reachable.
 - Headings animate through `SplitText.astro` (build-time lines + clipped words). Pass full lines as strings; it renders `aria-label` and hides the split spans from assistive tech.
 - The home gallery strip only becomes a pinned horizontal track under `html.anim` + `(width >= 64rem)` + `no-preference` motion. Any new pinned/horizontal section needs the same guard, otherwise content becomes unreachable.

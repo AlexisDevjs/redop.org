@@ -212,22 +212,6 @@ function initParallax() {
 	}
 }
 
-function initHeader() {
-	const header = document.querySelector<HTMLElement>("[data-header]");
-	if (!header) return;
-
-	const bar = header.querySelector<HTMLElement>("[data-scroll-progress]");
-
-	ScrollTrigger.create({
-		trigger: document.body,
-		start: "top top",
-		end: "bottom bottom",
-		onUpdate: (self) => {
-			if (bar) bar.style.transform = `scaleX(${self.progress})`;
-		},
-	});
-}
-
 function initGalleryPin() {
 	const mm = gsap.matchMedia();
 
@@ -273,7 +257,6 @@ function boot() {
 	initSplits();
 	initReveals();
 	initParallax();
-	initHeader();
 	initGalleryPin();
 
 	ScrollTrigger.refresh();

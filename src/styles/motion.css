@@ -29,25 +29,6 @@ html.scroll-locked {
 	overflow: hidden;
 }
 
-/* Scroll progress line inside the header. */
-.scroll-progress {
-	position: absolute;
-	inset-inline: 0;
-	bottom: -1px;
-	height: 1px;
-	overflow: hidden;
-	pointer-events: none;
-}
-
-html [data-header] .scroll-progress > span {
-	display: block;
-	height: 100%;
-	background: var(--red);
-	transform: scaleX(0);
-	transform-origin: 0 50%;
-	will-change: transform;
-}
-
 /* Burger icon swap */
 #menu-toggle .menu-icon-close {
 	display: none;
