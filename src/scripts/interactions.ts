@@ -1,3 +1,5 @@
+import { lockScroll, unlockScroll } from "./motion";
+
 const themeToggle = document.querySelector<HTMLButtonElement>("#theme-toggle");
 const updateThemeLabel = () => {
 	const dark = document.documentElement.dataset.theme === "dark";
@@ -19,25 +21,46 @@ themeToggle?.addEventListener("click", () => {
 	} catch {}
 	updateThemeLabel();
 });
+
 const menu = document.querySelector<HTMLButtonElement>("#menu-toggle");
-const nav = document.querySelector("#main-nav");
-const closeMenu = () => {
-	nav?.classList.remove("open");
-	menu?.setAttribute("aria-expanded", "false");
-	menu?.setAttribute("aria-label", "Abrir menú");
-};
-menu?.addEventListener("click", () => {
-	const open = menu.getAttribute("aria-expanded") !== "true";
+const nav = document.querySelector<HTMLElement>("#main-nav");
+const page = document.querySelector<HTMLElement>("#contenido");
+const footer = document.querySelector<HTMLElement>("footer");
+const desktop = window.matchMedia("(min-width: 48rem)");
+
+let menuOpen = false;
+
+const setMenu = (open: boolean, returnFocus = true) => {
+	if (!nav || !menu || open === menuOpen) return;
+
+	menuOpen = open;
+	nav.classList.toggle("open", open);
 	menu.setAttribute("aria-expanded", String(open));
 	menu.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
-	nav?.classList.toggle("open", open);
-});
+	document.documentElement.classList.toggle("menu-open", open);
+	page?.toggleAttribute("inert", open);
+	footer?.toggleAttribute("inert", open);
+
+	if (open) {
+		lockScroll();
+		nav.querySelector<HTMLAnchorElement>("a")?.focus();
+	} else {
+		unlockScroll();
+		if (returnFocus) menu.focus();
+	}
+};
+
+menu?.addEventListener("click", () => setMenu(!menuOpen));
 nav?.querySelectorAll("a").forEach((link) => {
-	link.addEventListener("click", closeMenu);
+	link.addEventListener("click", () => setMenu(false, false));
+});
+desktop.addEventListener("change", (event) => {
+	if (event.matches) setMenu(false, false);
 });
 document.addEventListener("keydown", (event) => {
-	if (event.key === "Escape") closeMenu();
+	if (event.key === "Escape" && menuOpen) setMenu(false);
 });
+
 const contact = document.querySelector<HTMLDialogElement>("#contact-dialog");
 document
 	.querySelector("#contact-open")

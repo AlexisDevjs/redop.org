@@ -1,0 +1,184 @@
+/* Motion system. Initial hidden states only apply while `html.anim` is
+   present, so the site stays readable without JS and with reduced motion. */
+
+html.anim [data-reveal] {
+	opacity: 0;
+	transform: translate3d(0, 24px, 0);
+}
+
+.split-line {
+	display: block;
+}
+
+.split-word {
+	display: inline-block;
+	overflow: hidden;
+	padding-bottom: 0.12em;
+	margin-bottom: -0.12em;
+	vertical-align: bottom;
+}
+
+html.anim .split-word > span {
+	display: inline-block;
+	opacity: 0;
+	transform: translate3d(0, 115%, 0);
+	will-change: transform, opacity;
+}
+
+html.scroll-locked {
+	overflow: hidden;
+}
+
+/* Scroll progress line inside the header. */
+.scroll-progress {
+	position: absolute;
+	inset-inline: 0;
+	bottom: -1px;
+	height: 1px;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+html [data-header] .scroll-progress > span {
+	display: block;
+	height: 100%;
+	background: var(--red);
+	transform: scaleX(0);
+	transform-origin: 0 50%;
+	will-change: transform;
+}
+
+/* Burger icon swap */
+#menu-toggle .menu-icon-close {
+	display: none;
+}
+
+#menu-toggle[aria-expanded="true"] .menu-icon-open {
+	display: none;
+}
+
+#menu-toggle[aria-expanded="true"] .menu-icon-close {
+	display: flex;
+}
+
+/* Fullscreen mobile menu */
+@media (width < 48rem) {
+	#main-nav {
+		position: fixed;
+		inset: 0;
+		z-index: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 0.25rem;
+		padding: 7rem 1.5rem 2.5rem;
+		background: var(--bg);
+		opacity: 0;
+		visibility: hidden;
+		transform: translate3d(0, -12px, 0);
+		transition:
+			opacity 0.28s ease,
+			transform 0.36s cubic-bezier(0.22, 1, 0.36, 1),
+			visibility 0s linear 0.36s;
+	}
+
+	#main-nav.open {
+		opacity: 1;
+		visibility: visible;
+		transform: none;
+		transition:
+			opacity 0.28s ease,
+			transform 0.36s cubic-bezier(0.22, 1, 0.36, 1),
+			visibility 0s linear 0s;
+	}
+
+	#main-nav > a:not(.menu-cta) {
+		border-bottom: 1px solid var(--border);
+		padding: 0.65rem 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.9rem, 8.5vw, 2.6rem);
+		font-weight: 500;
+		letter-spacing: -0.03em;
+		line-height: 1.15;
+		color: var(--text);
+	}
+
+	#main-nav > a:not(.menu-cta):last-of-type {
+		border-bottom: 0;
+	}
+
+	#main-nav > a[aria-current="page"] {
+		color: var(--red);
+	}
+
+	#main-nav .menu-cta {
+		margin-top: 2rem;
+		align-self: flex-start;
+	}
+}
+
+@media (width >= 48rem) {
+	#main-nav {
+		display: flex;
+		align-items: center;
+		gap: 1.75rem;
+	}
+
+	#main-nav > a {
+		font-size: 0.875rem;
+		color: var(--muted);
+	}
+
+	#main-nav > a:hover {
+		color: var(--text);
+	}
+
+	#main-nav > a[aria-current="page"] {
+		color: var(--red);
+	}
+
+	#main-nav .menu-cta {
+		display: none;
+	}
+}
+
+/* Home gallery: horizontal strip on desktop, pinned by GSAP.
+   Only when motion is active — without JS or with reduced motion the
+   gallery stays a normal grid so every photo remains reachable. */
+@media (width >= 64rem) and (prefers-reduced-motion: no-preference) {
+	html.anim .gallery-strip {
+		display: flex;
+		align-items: center;
+		min-height: calc(100svh - 6.25rem);
+		overflow: clip;
+	}
+
+	html.anim .gallery-strip-track {
+		width: 100%;
+	}
+
+	html.anim .gallery-strip-track .grid {
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: stretch;
+		gap: 0.875rem;
+		width: max-content;
+	}
+
+	html.anim .gallery-strip-track .grid > * {
+		flex: 0 0 auto;
+		width: clamp(17rem, 24vw, 27rem);
+	}
+
+	html.anim .gallery-strip-track .grid > * > span:first-child {
+		aspect-ratio: 3 / 4;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html.anim [data-reveal],
+	html.anim .split-word > span {
+		opacity: 1;
+		transform: none;
+	}
+}

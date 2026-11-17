@@ -21,7 +21,6 @@
 }
 
 @theme {
-	--animate-hero-copy: hero-enter 0.65s ease-out both;
 	--animate-hero-network: hero-enter 0.9s ease-out both;
 	--animate-gallery-slide-left: gallery-slide-left 0.42s
 		cubic-bezier(0.22, 1, 0.36, 1) both;

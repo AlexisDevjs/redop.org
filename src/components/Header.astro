@@ -3,17 +3,23 @@ import Button from "./Button.astro";
 import Icon from "./Icon.astro";
 
 const isGallery = Astro.url.pathname.startsWith("/galeria");
+const links = [
+	{ href: "/#nosotros", label: "Nosotros" },
+	{ href: "/#servicios", label: "Servicios" },
+	{ href: "/galeria", label: "Galería" },
+];
 ---
 
 <header
-  class="sticky top-0 z-20 border-b border-outline bg-header backdrop-blur-md"
+  data-header
+  class="sticky top-0 z-50 border-b border-outline bg-header md:backdrop-blur-md"
 >
   <div
-    class="site-container flex h-22 items-center justify-between gap-2.5 md:gap-6.25"
+    class="site-container relative flex h-22 items-center justify-between gap-2.5 md:gap-6.25"
   >
     <a
       href="/"
-      class="flex items-center gap-2.5 font-display text-xl leading-none font-bold tracking-[1px] md:text-[23px] h-full"
+      class="relative z-10 flex h-full items-center gap-2.5 font-display text-xl leading-none font-bold tracking-[1px] md:text-[23px]"
       aria-label="REDOPS, inicio"
     >
       <img
@@ -32,21 +38,25 @@ const isGallery = Astro.url.pathname.startsWith("/galeria");
       />
     </a>
 
-    <nav
-      id="main-nav"
-      aria-label="Navegación principal"
-      class="absolute inset-x-0 top-18.25 hidden border-b border-outline bg-surface px-5 py-3.75 [&.open]:grid [&.open]:gap-0 [&_a]:p-3.5 [&_a]:text-sm [&_a]:text-muted [&_a:hover]:text-content md:static md:flex md:items-center md:gap-8.75 md:border-0 md:bg-transparent md:px-0 md:py-0 md:[&_a]:px-0 md:[&_a]:py-3.5 md:[&_a]:text-sm lg:gap-6"
-    >
-      <a href="/#nosotros">Nosotros</a>
-      <a href="/#servicios">Servicios</a>
-      <a
-        href="/galeria"
-        aria-current={isGallery ? "page" : undefined}
-        class="aria-[current=page]:text-accent-red">Galería</a
+    <nav id="main-nav" aria-label="Navegación principal">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            aria-current={
+              link.href === "/galeria" && isGallery ? "page" : undefined
+            }
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <Button href="/#contacto" size="small" class="menu-cta"
+        >Cotizar proyecto <Icon name="arrow" size={17} /></Button
       >
     </nav>
 
-    <div class="flex items-center gap-2 md:gap-3">
+    <div class="relative z-10 flex items-center gap-2 md:gap-3">
       <button
         id="theme-toggle"
         class="inline-flex size-11 items-center justify-center rounded-[7px] border border-outline bg-transparent text-content hover:bg-raised"
@@ -56,16 +66,24 @@ const isGallery = Astro.url.pathname.startsWith("/galeria");
         <span class="hidden dark:flex"><Icon name="sun" size={20} /></span>
         <span class="flex dark:hidden"><Icon name="moon" size={20} /></span>
       </button>
-      <Button href="/#contacto" size="small" class="hidden md:inline-flex"
-        >Cotizar proyecto <Icon name="arrow" size={17} /></Button
-      >
+      <span class="hidden md:block">
+        <Button href="/#contacto" size="small"
+          >Cotizar proyecto <Icon name="arrow" size={17} /></Button
+        >
+      </span>
       <button
         id="menu-toggle"
         class="inline-flex size-11 items-center justify-center rounded-[7px] border border-outline bg-transparent text-content hover:bg-raised md:hidden"
         aria-controls="main-nav"
         aria-expanded="false"
-        aria-label="Abrir menú"><Icon name="menu" /></button
+        aria-label="Abrir menú"
       >
+        <span class="menu-icon-open flex"><Icon name="menu" /></span>
+        <span class="menu-icon-close"><Icon name="close" /></span>
+      </button>
     </div>
   </div>
+  <span class="scroll-progress" aria-hidden="true"
+    ><span data-scroll-progress></span></span
+  >
 </header>

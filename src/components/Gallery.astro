@@ -4,6 +4,7 @@ import { getGalleryImages } from "../lib/gallery-images";
 import Button from "./Button.astro";
 import GalleryPreview from "./gallery/GalleryPreview";
 import SectionLabel from "./SectionLabel.astro";
+import SplitText from "./SplitText.astro";
 
 const images = await getGalleryImages(
 	gallery.filter((item) => item.featured).slice(0, 6),
@@ -19,9 +20,12 @@ const images = await getGalleryImages(
   >
     <div>
       <SectionLabel>Nuestra galería</SectionLabel>
-      <h2 id="gallery-title" class="text-[34px] md:text-[clamp(32px,3.5vw,46px)]">
-        Seguridad que puedes ver.
-      </h2>
+      <SplitText
+        as="h2"
+        id="gallery-title"
+        class="text-[34px] md:text-[clamp(32px,3.5vw,46px)]"
+        lines={["Seguridad que puedes ver."]}
+      />
     </div>
     <div class="mt-5 md:mt-0">
       <p class="max-w-72 text-[12px] leading-[1.9]">
@@ -31,7 +35,11 @@ const images = await getGalleryImages(
     </div>
   </div>
 
-  <GalleryPreview images={images} client:visible />
+  <div class="gallery-strip" data-gallery-pin>
+    <div class="gallery-strip-track" data-gallery-track>
+      <GalleryPreview images={images} client:visible />
+    </div>
+  </div>
 
   <div
     class="mt-8 flex items-start justify-between gap-4 border-t border-outline pt-4 text-[10px] text-muted md:items-center"

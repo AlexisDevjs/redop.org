@@ -15,10 +15,20 @@ Static marketing site for REDOPS (video surveillance, network security, and cons
 ## Architecture
 
 - Two routes: `src/pages/index.astro` composes the landing page and `src/pages/galeria.astro` renders the full gallery. `src/layouts/Layout.astro` owns `<html>`, fonts, meta, favicon, and the inline theme bootstrap.
-- Behavior lives in two places. `src/scripts/interactions.ts` (loaded by both pages) handles the theme, the mobile menu, and the contact dialog. The gallery is a React island in `src/components/gallery/`: `client:visible` for the home preview and `client:load` on `/galeria`.
+- Behavior lives in two places. `src/scripts/interactions.ts` (loaded by both pages) handles the theme, the mobile menu, and the contact dialog; it imports `lockScroll` / `unlockScroll` from `src/scripts/motion.ts`. The gallery is a React island in `src/components/gallery/`: `client:visible` for the home preview and `client:load` on `/galeria`.
 - The vanilla script finds markup by ID: `#theme-toggle`, `#menu-toggle`, `#main-nav`, `#contact-open`, `#contact-dialog`, and `[data-close]`. If you rename or move that markup, update the script.
 - Gallery images stay server-side until Astro resolves them: `src/lib/gallery-images.ts` calls `getImage()` and returns plain strings/numbers. Pass those props to React; never pass `ImageMetadata` across the island boundary. The lightbox is a native `<dialog>`, so keep the `html:has(dialog[open])` scroll lock in `global.css`.
 - Theme: `data-theme` on `<html>` (`dark` by default, `light` opt-in), persisted as `redops-theme` in `localStorage`. The `dark:` variant is custom-mapped to `[data-theme="dark"]` in `global.css`, not the OS preference. Add new color tokens to both `:root` blocks and expose them through `@theme inline`.
+
+## Motion
+
+- `src/scripts/motion.ts` owns Lenis + GSAP/ScrollTrigger: hero and section reveals, split-text, hero parallax, the header scroll progress, and the pinned horizontal gallery. `src/styles/motion.css` holds the motion-only CSS.
+- Hidden pre-animation states live behind `html.anim`, which `Layout.astro` adds inline only when `prefers-reduced-motion` is not set (plus a 2.5 s failsafe). Keep it that way: without JS or with reduced motion the page must stay readable and every gallery photo reachable.
+- Headings animate through `SplitText.astro` (build-time lines + clipped words). Pass full lines as strings; it renders `aria-label` and hides the split spans from assistive tech.
+- The home gallery strip only becomes a pinned horizontal track under `html.anim` + `(width >= 64rem)` + `no-preference` motion. Any new pinned/horizontal section needs the same guard, otherwise content becomes unreachable.
+- `<dialog>` scroll locking is centralized in `motion.ts` via a `MutationObserver` on `open`; the mobile menu calls the same `lockScroll` / `unlockScroll`. Add `data-lenis-prevent` to any internally scrollable popup.
+- Anchor navigation is intercepted and computed manually (`rect.top + scrollY - header - 16`). Don't hand `lenis.scrollTo` an element while `scroll-margin-top` / `scroll-padding-top` are set, or the offset is applied twice.
+- The lightbox `<dialog>` is portaled to `document.body` so GSAP transforms on pinned/transformed ancestors can't trap its fixed positioning.
 
 ## Styling
 

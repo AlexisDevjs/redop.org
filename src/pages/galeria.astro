@@ -6,6 +6,7 @@ import GalleryPage from "../components/gallery/GalleryPage";
 import Header from "../components/Header.astro";
 import Icon from "../components/Icon.astro";
 import SectionLabel from "../components/SectionLabel.astro";
+import SplitText from "../components/SplitText.astro";
 import Layout from "../layouts/Layout.astro";
 import { getGalleryImages } from "../lib/gallery-images";
 
@@ -35,14 +36,15 @@ const images = await getGalleryImages();
       >
         <div>
           <SectionLabel>Archivo de campo</SectionLabel>
-          <h1
+          <SplitText
+            as="h1"
             id="gallery-page-title"
             class="max-w-175 text-[clamp(36px,9vw,48px)] leading-[1.04] font-medium tracking-[-1.8px] md:text-[clamp(40px,5.2vw,68px)] md:tracking-[-2.8px]"
-          >
-            Instalaciones que ya están trabajando.
-          </h1>
+            lines={["Instalaciones que ya están trabajando."]}
+          />
           <p
             class="mt-4.5 max-w-135 text-[14px] leading-[1.9] md:mt-6"
+            data-reveal
           >
             Cámaras, cableado, paneles y trabajo en campo. Cada fotografía es
             parte de un proyecto real, documentado por nuestro equipo.
