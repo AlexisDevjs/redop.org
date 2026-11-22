@@ -1,0 +1,183 @@
+---
+import Button from "./Button.astro";
+import Icon from "./Icon.astro";
+import SectionLabel from "./SectionLabel.astro";
+import SplitText from "./SplitText.astro";
+
+const capacities = [
+	{
+		icon: "people",
+		title: "Responde con tu información",
+		text: "Servicios, horarios y preguntas frecuentes, con el tono de tu marca.",
+	},
+	{
+		icon: "code",
+		title: "Ordena la conversación",
+		text: "Identifica qué necesita cada visitante y recoge los datos clave.",
+	},
+	{
+		icon: "check",
+		title: "Deja el cierre listo",
+		text: "Entrega un resumen para que tu equipo dé seguimiento.",
+	},
+];
+
+const flow = [
+	{
+		icon: "mail",
+		title: "Consulta entrante",
+		text: "El visitante escribe en tu sitio web.",
+	},
+	{
+		icon: "code",
+		title: "Respuesta con contexto",
+		text: "El asistente contesta con la información del negocio.",
+	},
+	{
+		icon: "check",
+		title: "Siguiente paso listo",
+		text: "Queda ordenada la conversación y los datos de contacto.",
+	},
+];
+
+const implementation = [
+	{
+		title: "Entrenamiento",
+		text: "Cargamos tus servicios, horarios y preguntas frecuentes.",
+	},
+	{
+		title: "Integración",
+		text: "Lo sumamos a tu web y ajustamos el tono de las respuestas.",
+	},
+	{
+		title: "Seguimiento",
+		text: "Revisamos conversaciones reales y afinamos lo que haga falta.",
+	},
+];
+---
+
+<section
+	id="ia"
+	class="border-y border-outline bg-surface"
+	aria-labelledby="ia-title"
+>
+  <div class="site-container py-17.5 md:py-22.5">
+    <div class="grid gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-center lg:gap-18.75">
+      <div>
+        <SectionLabel tone="purple">Inteligencia Artificial</SectionLabel>
+        <SplitText
+          as="h2"
+          id="ia-title"
+          lines={["Un asistente que atiende", "mientras tú trabajas."]}
+        />
+        <p class="mt-5.75 max-w-115 text-[13px] leading-[1.9]" data-reveal>
+          Un asistente hecho a medida con la información de tu negocio. Responde
+          en tu web las consultas que llegan, resuelve dudas y ordena la
+          conversación para que tu equipo retome el contacto.
+        </p>
+
+        <ul
+          class="mt-7 grid list-none gap-5 border-t border-outline p-0 pt-5 sm:grid-cols-3 sm:gap-4.5"
+        >
+          {
+            capacities.map((capacity) => (
+              <li data-reveal>
+                <span class="mb-3 flex size-9 items-center justify-center rounded-[9px] border border-outline bg-raised text-accent-purple">
+                  <Icon name={capacity.icon} size={18} />
+                </span>
+                <h3 class="mb-1.5 text-[14px] leading-[1.35]">
+                  {capacity.title}
+                </h3>
+                <p class="text-[11px] leading-[1.65]">{capacity.text}</p>
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="mt-7" data-reveal>
+          <Button href="#contacto" variant="secondary"
+            >Hablemos de tu asistente <Icon name="arrow" size={18} /></Button
+          >
+          <p class="mt-3 text-[11px] text-muted">
+            Por ahora disponible en tu sitio web.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="ia-flow relative isolate overflow-hidden rounded-[22px] border border-outline bg-page p-6 md:p-7"
+        data-reveal
+      >
+        <p
+          class="mb-5 flex items-center justify-between gap-3 text-[10px] font-semibold tracking-[0.16em] text-muted uppercase"
+        >
+          Cómo funciona <span class="text-accent-purple">En tu web</span>
+        </p>
+        <ol class="relative m-0 grid list-none gap-0 p-0">
+          {
+            flow.map((step, index) => (
+              <li class="relative flex gap-4 pb-6 last:pb-0">
+                {index < flow.length - 1 && (
+                  <span class="ia-connector" aria-hidden="true" />
+                )}
+                <span class="relative z-1 grid size-8 shrink-0 place-items-center rounded-full border border-outline bg-raised text-accent-purple">
+                  <Icon name={step.icon} size={15} />
+                </span>
+                <div class="pt-1">
+                  <p class="text-[12px] font-semibold text-content">
+                    {step.title}
+                  </p>
+                  <p class="mt-1 text-[11px] leading-[1.65]">{step.text}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+
+    <ol
+      class="mt-12 grid list-none grid-cols-1 border-t border-outline p-0 md:mt-14 md:grid-cols-3"
+    >
+      {
+        implementation.map((step, index) => (
+          <li
+            class="border-b border-outline py-5 last:border-b-0 md:border-b-0 md:border-l md:px-6 md:py-6 md:first:border-l-0 md:first:pl-0 md:last:pr-0"
+            data-reveal
+          >
+            <p class="mb-2 font-display text-[10px] font-semibold tracking-[0.16em] text-muted tabular-nums">
+              0{index + 1}
+            </p>
+            <h3 class="mb-1.5 text-[15px]">{step.title}</h3>
+            <p class="text-xs leading-[1.7]">{step.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .ia-flow::before {
+    content: "";
+    position: absolute;
+    inset: -60% 30% 30% -20%;
+    z-index: -1;
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--purple) 12%, transparent),
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  .ia-connector {
+    position: absolute;
+    top: 2.25rem;
+    bottom: -0.25rem;
+    left: 1rem;
+    width: 1px;
+    background: var(--border);
+    transform: translateX(-50%);
+  }
+</style>

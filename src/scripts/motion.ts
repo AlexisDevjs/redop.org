@@ -37,6 +37,51 @@ function initLenis() {
 	gsap.ticker.lagSmoothing(0);
 }
 
+function headerOffset() {
+	const header = document.querySelector<HTMLElement>("[data-header]");
+	return (header?.offsetHeight ?? 0) + 16;
+}
+
+function targetTop(target: HTMLElement) {
+	return Math.max(
+		0,
+		target.getBoundingClientRect().top + window.scrollY - headerOffset(),
+	);
+}
+
+function scrollToTop(top: number, smooth: boolean) {
+	if (lenis) {
+		lenis.scrollTo(top, smooth ? { duration: 1.1 } : { immediate: true });
+	} else {
+		window.scrollTo({
+			top,
+			behavior: smooth && !reduce.matches ? "smooth" : "auto",
+		});
+	}
+}
+
+function hashElement() {
+	const hash = window.location.hash;
+	if (!hash || hash === "#") return null;
+	try {
+		return document.getElementById(decodeURIComponent(hash.slice(1)));
+	} catch {
+		return null;
+	}
+}
+
+/** Lenis cancels the browser's native hash jump, so apply it ourselves. */
+function initHashTarget() {
+	const apply = (smooth: boolean) => {
+		const target = hashElement();
+		if (target) scrollToTop(targetTop(target), smooth);
+	};
+
+	apply(false);
+	window.addEventListener("load", () => apply(false), { once: true });
+	window.addEventListener("hashchange", () => apply(true));
+}
+
 function initAnchors() {
 	document.addEventListener("click", (event) => {
 		if (
@@ -73,22 +118,7 @@ function initAnchors() {
 		// Lenis also subtracts `scroll-margin-top` and `scroll-padding-top`,
 		// which are already set to 100px in global.css. Pass a numeric target
 		// so the header offset is applied exactly once.
-		const header = document.querySelector<HTMLElement>("[data-header]");
-		const top = Math.max(
-			0,
-			target.getBoundingClientRect().top +
-				window.scrollY -
-				((header?.offsetHeight ?? 0) + 16),
-		);
-
-		if (lenis) {
-			lenis.scrollTo(top, { duration: 1.1 });
-		} else {
-			window.scrollTo({
-				top,
-				behavior: reduce.matches ? "auto" : "smooth",
-			});
-		}
+		scrollToTop(targetTop(target), true);
 		window.history.pushState(null, "", url.hash);
 	});
 }
@@ -177,19 +207,37 @@ function initReveals() {
 
 	if (!rest.length) return;
 
+	const reveal = (batch: HTMLElement[]) =>
+		gsap.to(batch, {
+			y: 0,
+			opacity: 1,
+			duration: 0.75,
+			ease: "power3.out",
+			stagger: 0.06,
+			overwrite: true,
+		});
+
 	ScrollTrigger.batch(rest, {
 		start: "top 88%",
 		once: true,
-		onEnter: (batch) =>
-			gsap.to(batch, {
-				y: 0,
-				opacity: 1,
-				duration: 0.75,
-				ease: "power3.out",
-				stagger: 0.06,
-				overwrite: true,
-			}),
+		onEnter: reveal,
 	});
+
+	// Safety net: a hash jump or an instant scroll can land past a batch
+	// boundary without firing its `onEnter`, leaving content invisible.
+	const sweep = () => {
+		const line = window.innerHeight * 0.92;
+		const stuck = rest.filter(
+			(el) =>
+				Number(gsap.getProperty(el, "opacity")) < 0.05 &&
+				el.getBoundingClientRect().top < line,
+		);
+		if (stuck.length) reveal(stuck);
+	};
+
+	ScrollTrigger.addEventListener("scrollEnd", sweep);
+	window.addEventListener("load", sweep, { once: true });
+	requestAnimationFrame(sweep);
 }
 
 function initParallax() {
@@ -261,9 +309,13 @@ function boot() {
 
 	ScrollTrigger.refresh();
 
+	// Register the refresh before the hash handler so late layout shifts are
+	// measured before the deep link is applied.
 	window.addEventListener("load", () => ScrollTrigger.refresh(), {
 		once: true,
 	});
+
+	initHashTarget();
 }
 
 if (reduce.matches) {

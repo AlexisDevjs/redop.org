@@ -1,0 +1,144 @@
+---
+import { Image } from "astro:assets";
+import { gallery } from "../data/gallery";
+import Button from "./Button.astro";
+import Icon from "./Icon.astro";
+import SectionLabel from "./SectionLabel.astro";
+import SplitText from "./SplitText.astro";
+
+const steps = [
+	{
+		title: "Levantamiento",
+		text: "Visitamos el espacio, revisamos puntos ciegos y definimos qué debe cubrir el sistema.",
+	},
+	{
+		title: "Diseño de cobertura",
+		text: "Elegimos cámaras, lentes y ubicación para cada zona según la luz y el uso del espacio.",
+	},
+	{
+		title: "Instalación y red",
+		text: "Montaje, canalización y configuración de grabación, notificaciones y acceso remoto.",
+	},
+	{
+		title: "Entrega y soporte",
+		text: "Te explicamos cómo operar el sistema y quedamos atentos a mantenimiento y ajustes.",
+	},
+];
+
+const includes = [
+	"Cámaras domo, bala o PTZ según cada punto.",
+	"Grabador NVR con disco de video.",
+	"Acceso remoto desde el celular.",
+	"Cableado canalizado y protegido.",
+	"Notificaciones y detección de movimiento.",
+	"Capacitación para operar el sistema.",
+];
+
+const photos = ["camara-ptz-en-poste", "instalacion-en-cielo-raso"].flatMap(
+	(id) => {
+		const item = gallery.find((entry) => entry.id === id);
+		return item ? [item] : [];
+	},
+);
+---
+
+<section
+	id="camaras"
+	class="site-container py-17.5 md:py-27"
+	aria-labelledby="cameras-title"
+>
+  <div
+    class="relative isolate overflow-hidden rounded-[22px] border border-outline bg-surface px-6 py-8 md:rounded-[30px] md:px-11 md:py-12"
+  >
+    <div
+      class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16.25"
+    >
+      <div>
+        <SectionLabel>Instalación de cámaras</SectionLabel>
+        <SplitText
+          as="h2"
+          id="cameras-title"
+          lines={["Un sistema de cámaras", "no se improvisa."]}
+        />
+        <p class="mt-5.75 max-w-110 text-[13px] leading-[1.9]" data-reveal>
+          Diseñamos la cobertura, elegimos el equipo según el espacio y dejamos
+          todo configurado: grabación, acceso remoto y cableado protegido.
+        </p>
+        <div class="mt-7" data-reveal>
+          <Button href="#contacto"
+            >Solicitar visita técnica <Icon name="arrow" size={18} /></Button
+          >
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3" data-reveal>
+        {
+          photos.map((photo) => (
+            <figure class="m-0 overflow-hidden rounded-xl border border-outline bg-page">
+              <Image
+                src={photo.image}
+                alt={photo.alt}
+                format="webp"
+                quality={80}
+                class="aspect-3/4 w-full object-cover"
+              />
+              <figcaption class="px-3 py-2.5 text-[9px] leading-[1.6] text-muted">
+                {photo.title}
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+
+    <ol
+      class="mt-10 grid list-none grid-cols-1 border-t border-outline p-0 md:mt-12 md:grid-cols-2 lg:grid-cols-4"
+    >
+      {
+        steps.map((step, index) => (
+          <li
+            class="border-b border-outline py-5 lg:border-b-0 lg:border-l lg:px-5 lg:first:border-l-0 lg:first:pl-0 lg:last:pr-0"
+            data-reveal
+          >
+            <p class="mb-3 font-display text-[10px] font-semibold tracking-[0.16em] text-muted tabular-nums">
+              0{index + 1}
+            </p>
+            <h3 class="mb-2 text-[16px]">{step.title}</h3>
+            <p class="text-xs leading-[1.7]">{step.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div
+      class="mt-10 grid gap-6 border-t border-outline pt-7 md:grid-cols-[0.75fr_1.25fr] md:gap-12"
+      data-reveal
+    >
+      <div>
+        <p
+          class="text-[10px] font-semibold tracking-[0.16em] text-muted uppercase"
+        >
+          Qué incluye
+        </p>
+        <p class="mt-2.5 max-w-70 text-xs leading-[1.75]">
+          Cada instalación se cotiza según el espacio, el número de puntos y el
+          equipo.
+        </p>
+      </div>
+      <ul
+        class="grid list-none grid-cols-1 gap-x-6 gap-y-3 p-0 sm:grid-cols-2"
+      >
+        {
+          includes.map((item) => (
+            <li class="flex items-start gap-2.5 text-[12px] leading-[1.6] text-muted">
+              <span class="mt-0.5 text-accent-green">
+                <Icon name="check" size={16} />
+              </span>
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

@@ -3,11 +3,13 @@ import { Image } from "astro:assets";
 import expertImage from "../assets/images/experto-proyectos-tecnologicos.png";
 import BrandNetwork from "../components/BrandNetwork.astro";
 import Button from "../components/Button.astro";
+import CameraService from "../components/CameraService.astro";
 import Dialogs from "../components/Dialogs.astro";
 import Footer from "../components/Footer.astro";
 import Gallery from "../components/Gallery.astro";
 import Header from "../components/Header.astro";
 import Icon from "../components/Icon.astro";
+import SalesAssistant from "../components/SalesAssistant.astro";
 import SectionLabel from "../components/SectionLabel.astro";
 import ServiceGraphic from "../components/ServiceGraphic.astro";
 import SplitText from "../components/SplitText.astro";
@@ -58,9 +60,22 @@ const disciplines = [
 ];
 
 const services = [
-	"Cámaras y sistemas inteligentes de videovigilancia.",
-	"Seguridad de redes y revisión ética de cuentas.",
-	"Obra civil, cableado oculto y pintura de acabados.",
+	{
+		text: "Cámaras y sistemas inteligentes de videovigilancia.",
+		href: "#camaras",
+	},
+	{
+		text: "Seguridad de redes y revisión ética de cuentas.",
+		href: "#contacto",
+	},
+	{
+		text: "Obra civil, cableado oculto y pintura de acabados.",
+		href: "#contacto",
+	},
+	{
+		text: "Asistentes de ventas con IA para tu web.",
+		href: "#ia",
+	},
 ];
 ---
 
@@ -292,13 +307,13 @@ const services = [
                 <li data-reveal>
                   <a
                     class="group flex items-center gap-4 border-b border-outline py-4"
-                    href="#contacto"
+                    href={service.href}
                   >
                     <span class="font-display text-[10px] font-semibold tracking-[0.16em] text-muted tabular-nums">
                       0{index + 1}
                     </span>
                     <span class="min-w-0 flex-1 text-[12px] leading-[1.6] text-muted md:text-[13px]">
-                      {service}
+                      {service.text}
                     </span>
                     <span class="grid size-9 shrink-0 place-items-center rounded-full border border-outline text-content transition-colors duration-200 group-hover:border-brand group-hover:bg-brand group-hover:text-white motion-reduce:transition-none">
                       <span class="transition-transform duration-300 group-hover:translate-x-0.5 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0">
@@ -316,6 +331,8 @@ const services = [
         </div>
       </div>
     </section>
+
+    <CameraService />
 
     <section
       class="site-container grid grid-cols-1 gap-8.75 py-14 md:grid-cols-[0.85fr_1.15fr] md:items-center md:gap-12.5 md:py-22.5 lg:gap-20"
@@ -369,6 +386,8 @@ const services = [
       </div>
     </section>
 
+    <SalesAssistant />
+
     <Gallery />
 
     <section
@@ -406,7 +425,7 @@ const services = [
       <div
         class="flex items-center justify-between gap-3.75 border-t border-outline pt-4.75 text-[9px] text-muted md:gap-0 md:text-[10px]"
       >
-        <span>Videovigilancia. Redes. Instalaciones.</span>
+        <span>Videovigilancia. Redes. Instalaciones. IA.</span>
         <span>redop.org</span>
       </div>
     </section>

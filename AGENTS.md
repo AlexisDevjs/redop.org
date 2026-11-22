@@ -15,6 +15,7 @@ Static marketing site for REDOPS (video surveillance, network security, and cons
 ## Architecture
 
 - Two routes: `src/pages/index.astro` composes the landing page and `src/pages/galeria.astro` renders the full gallery. `src/layouts/Layout.astro` owns `<html>`, fonts, meta, favicon, and the inline theme bootstrap.
+- Section-level blocks live in `src/components/`: `CameraService.astro` (`#camaras`) is the camera-installation deep dive and `SalesAssistant.astro` (`#ia`) covers the custom AI sales assistant (web only). `SectionLabel` accepts `tone="red|green|purple"`.
 - Behavior lives in two places. `src/scripts/interactions.ts` (loaded by both pages) handles the theme, the mobile menu, and the contact dialog; it imports `lockScroll` / `unlockScroll` from `src/scripts/motion.ts`. The gallery is a React island in `src/components/gallery/`: `client:visible` for the home preview and `client:load` on `/galeria`.
 - The vanilla script finds markup by ID: `#theme-toggle`, `#menu-toggle`, `#main-nav`, `#contact-open`, `#contact-dialog`, and `[data-close]`. If you rename or move that markup, update the script.
 - Gallery images stay server-side until Astro resolves them: `src/lib/gallery-images.ts` calls `getImage()` and returns plain strings/numbers. Pass those props to React; never pass `ImageMetadata` across the island boundary. The lightbox is a native `<dialog>`, so keep the `html:has(dialog[open])` scroll lock in `global.css`.

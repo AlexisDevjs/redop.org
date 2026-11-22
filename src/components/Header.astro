@@ -6,6 +6,8 @@ const isGallery = Astro.url.pathname.startsWith("/galeria");
 const links = [
 	{ href: "/#nosotros", label: "Nosotros" },
 	{ href: "/#servicios", label: "Servicios" },
+	{ href: "/#camaras", label: "Cámaras", wide: true },
+	{ href: "/#ia", label: "Asistente IA", wide: true },
 	{ href: "/galeria", label: "Galería" },
 ];
 ---
@@ -43,6 +45,7 @@ const links = [
         links.map((link) => (
           <a
             href={link.href}
+            data-nav-wide={link.wide ? "true" : undefined}
             aria-current={
               link.href === "/galeria" && isGallery ? "page" : undefined
             }
@@ -84,3 +87,11 @@ const links = [
     </div>
   </div>
 </header>
+
+<style>
+  @media (width >= 48rem) and (width < 64rem) {
+    #main-nav > a[data-nav-wide] {
+      display: none;
+    }
+  }
+</style>
